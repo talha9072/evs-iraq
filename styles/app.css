@@ -1,0 +1,900 @@
+/* =============================================================================
+   EVS DESIGN SYSTEM
+   =============================================================================
+
+   One file. Every colour, size, radius, shadow and easing the redesigned pages
+   use is declared here and nowhere else. Change a value here and it changes
+   everywhere it is used, in both languages, on every branch site.
+
+   Read docs/DESIGN-SYSTEM.md for the audit of the system this replaces.
+
+   -----------------------------------------------------------------------------
+   HOW THIS COEXISTS WITH THE LEGACY STACK
+   -----------------------------------------------------------------------------
+   Next's pages router loads global CSS from _app.js, which means this file
+   reaches EVERY route — including the ~40 that still run on 1.2 MB of Crafto and
+   Bootstrap. Three deliberate choices keep it from touching them:
+
+   1. NO PREFLIGHT. Tailwind's reset would restyle every legacy page (its
+      `img { display: block }` alone would reflow inline images site-wide). The
+      import below pulls in the theme and the utilities only. The reset this
+      project needs is written by hand further down, scoped.
+
+   2. CASCADE LAYERS DO THE ISOLATION. Everything here lands in a named layer.
+      The legacy stylesheets are UNLAYERED, and unlayered CSS beats layered CSS
+      no matter the specificity — so on a legacy page Bootstrap's `.container`,
+      `.border` and `.rounded` win over Tailwind's automatically. No prefix
+      needed on either side. On a redesigned page no legacy CSS is loaded at
+      all, so the utilities simply apply.
+
+   3. `:where()` FOR SCOPED BASE RULES. The element defaults below are scoped to
+      `[data-design="modern"]` — set on <body> by _app.js — wrapped in `:where()`
+      so they contribute ZERO specificity. They cannot leak onto a legacy page,
+      and a Tailwind utility still overrides them on a modern one. A plain
+      descendant selector would win against utilities, which is the bug this
+      avoids.
+
+   Component primitives carry an `evs-` prefix for the same reason: `.btn` and
+   `.card` already mean something to Crafto, and layers alone would still let a
+   property it does not set (a `gap`, say) bleed through to a legacy button.
+   ========================================================================== */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* -----------------------------------------------------------------------------
+   FONTS
+   Both faces are unchanged — they are right for the brand and the client likes
+   them. korolev-condensed is declared here because redesigned pages do not load
+   evs.css, where the old @font-face lived.
+
+   URBANIST IS NOW DECLARED HERE TOO, and that is a performance fix rather than
+   tidying. It used to arrive from a `<link>` to fonts.googleapis.com in
+   _document.js, which is a RENDER-BLOCKING request to a third party: the
+   browser had to resolve DNS for two hosts, complete a TLS handshake and
+   download a stylesheet before it could paint anything, and only then discover
+   the font files that stylesheet points at. Lighthouse flagged the critical
+   path and it was right about the cause, though not about the culprit - the
+   other blocking file is Tailwind itself, which cannot be removed.
+
+   It is ONE VARIABLE FONT per subset, not five static cuts. Google serves the
+   same file for weights 300 through 700 because Urbanist is variable, so
+   self-hosting costs 27 KB (latin) and 16 KB (latin-ext) for the entire range -
+   less than the five separate downloads it replaces, with no third-party hop.
+
+   THE UNICODE RANGES ARE COPIED FROM GOOGLE'S OWN STYLESHEET, so latin-ext is
+   fetched only by a page that actually contains one of its characters. Dropping
+   them would make every visitor download both.
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  /* The variable range. A single file answers every weight in it. */
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/urbanist-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/urbanist-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* NOTE THE WEIGHT DESCRIPTOR. There is exactly one korolev file — a single
+   medium cut — and the legacy stylesheet declared it with no `font-weight` at
+   all, which defaults the descriptor to 400. Asking for 600 therefore made the
+   browser SYNTHESISE bold, and that synthetic weight is what the hero has looked
+   like since the site launched.
+
+   Declaring `font-weight: 100 900` here (as this file first did) tells the
+   browser the face already covers 600, so it stops synthesising and renders the
+   plain medium cut. The headline came out visibly thinner and, at display sizes,
+   read as though it had been letter-spaced open.
+
+   So the descriptor stays at 400 deliberately: it is what the file actually is,
+   and it keeps the synthetic bold the design depends on. A real bold cut would
+   be better than synthesis — worth buying if korolev is staying. */
+@font-face {
+  font-family: "korolev-condensed";
+  src: url("/fonts/korolev-condensed-medium.woff2") format("woff2"),
+       url("/fonts/korolev-condensed-medium.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* `static`, not a bare `@theme`. By default Tailwind emits only the theme
+   variables some generated utility actually references, so `--color-brand-700`
+   would be absent from the stylesheet until something used `bg-brand-700` — and
+   any hand-written CSS or inline `var(--color-brand-700)` would silently resolve
+   to nothing. Caught exactly that way on /design-system, where half of both
+   ramps rendered as empty swatches.
+
+   The whole system is meant to be reachable from anywhere, including plain CSS,
+   so every token is always emitted. It costs about 1 KB. */
+@theme static {
+  /* ===========================================================================
+     1 — PRIMITIVES
+     Raw values with no meaning attached. Components use the semantic tier below,
+     not these.
+     ======================================================================== */
+
+  /* --- Brand green -----------------------------------------------------------
+     Generated in OKLCH from #5BCC12 — L 0.749, C 0.225, H 137.6 — which is
+     pinned at 500. Lightness steps are perceptually even; chroma tapers at both
+     ends so the tints do not go neon and the shades do not go muddy. Every step
+     is a real derivative of the base rather than a hand-nudged guess, which is
+     what makes the ramp safe to extend. */
+  --color-brand-50:  #eafee3;
+  --color-brand-100: #d7facb;
+  --color-brand-200: #b8f0a3;
+  --color-brand-300: #92e373;
+  --color-brand-400: #75d949;
+  --color-brand-500: #5bcc12;  /* ← the brand green */
+  --color-brand-600: #3daf00;
+  --color-brand-700: #228d00;
+  --color-brand-800: #126c00;
+  --color-brand-900: #0d4f00;
+  --color-brand-950: #012d00;
+
+  /* --- Neutrals --------------------------------------------------------------
+     The green's hue at a chroma of ~0.006 — far too low to read as green, high
+     enough that the greys feel related to the brand rather than borrowed from a
+     framework. Replaces the five arbitrary greys in docs/DESIGN-SYSTEM.md §2.2. */
+  --color-ink-0:   #ffffff;
+  --color-ink-50:  #f6f8f5;
+  --color-ink-100: #ebeeea;
+  --color-ink-200: #d7dad6;
+  --color-ink-300: #babdb9;
+  --color-ink-400: #969995;
+  --color-ink-500: #777a75;
+  --color-ink-600: #5a5d59;
+  --color-ink-700: #3e413e;
+  --color-ink-800: #292c29;
+  --color-ink-850: #1d1f1d;
+  --color-ink-900: #141613;
+  --color-ink-950: #0a0c0a;
+  --color-ink-975: #050605;
+
+  /* --- Status ----------------------------------------------------------------
+     Deliberately not the brand green: "success" has to be distinguishable from
+     "this is an EVS accent" or neither reads. */
+  --color-signal-success: #34c77b;
+  --color-signal-warning: #e8a33d;
+  --color-signal-danger:  #e2564f;
+
+  /* ===========================================================================
+     2 — SEMANTIC
+     A role, not a value. This is what components reach for.
+     ======================================================================== */
+
+  /* Surfaces. Four steps that are genuinely visible against each other; the old
+     palette had five that were not. */
+  /* MEASURED, because the first set was not. `raised` was ink-900, which is
+     1.08:1 against the page - a difference you cannot see. Every card on the
+     site was therefore a 1px border and nothing else, and that is most of why
+     the design read as flat.
+
+       before  card vs page 1.08:1   hover vs card 1.10:1
+       after   card vs page 1.18:1   hover vs card 1.17:1
+
+     Luminance alone cannot do much more than that at near-black without the
+     surfaces going grey - which is why the other half of the fix is the inset
+     top highlight and the shadow now applied in `.evs-card`. A dark card reads
+     as raised because of its lit top edge, not because it is paler.
+
+     Text still clears AA on the new card: content-muted is 5.76:1 (was 6.32),
+     content 13.2:1. `content-subtle` drops to 3.81 - it is documented "labels
+     only" and was already under 4.5 on the old card, so nothing regressed that
+     was passing before. */
+  --color-surface:          var(--color-ink-950);  /* the page */
+  --color-surface-raised:   var(--color-ink-850);  /* cards, panels */
+  --color-surface-elevated: var(--color-ink-800);  /* hover, popovers, inputs */
+  --color-surface-sunken:   var(--color-ink-975);  /* wells, footer, scrims */
+  --color-surface-inverse:  var(--color-ink-50);   /* the rare light section */
+
+  /* Content. Every one clears WCAG AA on both --color-surface and
+     --color-surface-raised, including `subtle` — which the old --medium-gray at
+     3.69 : 1 did not. Ratios below are against --color-surface. */
+  --color-content:           var(--color-ink-50);    /* 17.4 : 1 */
+  --color-content-secondary: var(--color-ink-300);   /* 10.7 : 1 */
+  --color-content-muted:     var(--color-ink-400);   /*  7.0 : 1 */
+  --color-content-subtle:    var(--color-ink-500);   /*  4.7 : 1 — labels only */
+  --color-content-accent:    var(--color-brand-500); /*  9.8 : 1 */
+  --color-content-inverse:   var(--color-ink-975);   /* on light, or on green */
+
+  /* Lines. Transparent white, so one value sits correctly on every surface step
+     and over photography — which a solid grey cannot do. */
+  --color-line-subtle: color-mix(in oklab, #ffffff 8%, transparent);
+  --color-line:        color-mix(in oklab, #ffffff 14%, transparent);
+  --color-line-strong: color-mix(in oklab, #ffffff 24%, transparent);
+  --color-line-accent: var(--color-brand-500);
+
+  /* ===========================================================================
+     3 — TYPE
+     ======================================================================== */
+  --font-display: "korolev-condensed", "Urbanist", system-ui, sans-serif;
+  --font-sans:    "Urbanist", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* THE HEADING SPEC, from the legacy hero that the client signed off on:
+   *
+   *     font-size: 75px;  line-height: 70px;  letter-spacing: -2px;  font-weight: 600;
+   *
+   * Expressed as ratios so every step inherits the same look at its own size:
+   *
+   *     line-height     70 / 75 = 0.933
+   *     letter-spacing  -2 / 75 = -0.0267em
+   *
+   * An earlier pass here used -0.045em on the reasoning that tracking should go
+   * more negative as size goes up. It does not match this face — korolev is
+   * already condensed, and past about -0.03em the caps start touching. The ratio
+   * above is what the design actually is, so it is used verbatim.
+   *
+   * Sizes are fluid (clamp) so a heading is never 64px on a 375px phone — the
+   * single worst defect in the old system (docs/DESIGN-SYSTEM.md §3.3). Each step
+   * interpolates between a 375px and a 1440px viewport, then stops. Only the
+   * SIZE is fluid; the ratios above hold at every width. */
+  --text-display-1: clamp(3rem, 1.55rem + 6.2vw, 7rem);
+  --text-display-1--line-height: 0.933;
+  --text-display-1--letter-spacing: -0.0267em;
+  --text-display-1--font-weight: 600;
+
+  --text-display-2: clamp(2.5rem, 1.6rem + 3.85vw, 5rem);
+  --text-display-2--line-height: 0.933;
+  --text-display-2--letter-spacing: -0.0267em;
+  --text-display-2--font-weight: 600;
+
+  --text-display-3: clamp(2rem, 1.45rem + 2.35vw, 3.5rem);
+  --text-display-3--line-height: 0.95;
+  --text-display-3--letter-spacing: -0.0267em;
+  --text-display-3--font-weight: 600;
+
+  /* Slightly looser leading than the display steps: this size routinely runs to
+     two or three lines, where 0.933 would collide the descenders of one line
+     with the caps of the next. Tracking is unchanged. */
+  --text-heading: clamp(1.5rem, 1.25rem + 1.05vw, 2.25rem);
+  --text-heading--line-height: 1.05;
+  --text-heading--letter-spacing: -0.0267em;
+  --text-heading--font-weight: 600;
+
+  --text-subheading: clamp(1.125rem, 1.02rem + 0.45vw, 1.4rem);
+  --text-subheading--line-height: 1.25;
+  --text-subheading--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  /* Uppercase micro-label — the one place tracking goes positive. */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.18em;
+
+  /* ===========================================================================
+     4 — SHAPE, DEPTH, MOTION
+     ======================================================================== */
+  --radius-xs:  2px;
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  14px;
+  --radius-xl:  22px;
+  --radius-2xl: 32px;
+
+  /* Tuned for a near-black ground: a hairline inset highlight, a tight cast
+     shadow, and a wide ambient pool. The old system's 5 %-black shadows were
+     invisible here, which is why every card read as flat. */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5),
+               inset 0 1px 0 0 rgb(255 255 255 / 0.04);
+  --shadow-md: 0 2px 4px rgb(0 0 0 / 0.4),
+               0 12px 28px -12px rgb(0 0 0 / 0.7),
+               inset 0 1px 0 0 rgb(255 255 255 / 0.05);
+  --shadow-lg: 0 4px 8px rgb(0 0 0 / 0.4),
+               0 32px 64px -24px rgb(0 0 0 / 0.85),
+               inset 0 1px 0 0 rgb(255 255 255 / 0.06);
+  --shadow-glow: 0 0 0 1px color-mix(in oklab, #5bcc12 35%, transparent),
+                 0 8px 32px -8px color-mix(in oklab, #5bcc12 45%, transparent);
+
+  --ease-out:    cubic-bezier(0.16, 0.84, 0.44, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-marquee: marquee 45s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* =============================================================================
+   BASE — scoped to redesigned pages, at zero specificity
+   ========================================================================== */
+@layer base {
+  /* The reset. Small on purpose: these pages are all new markup, so the only
+     browser defaults worth clearing are the ones that bite. */
+  :where([data-design="modern"]) *,
+  :where([data-design="modern"]) *::before,
+  :where([data-design="modern"]) *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid var(--color-line-subtle);
+  }
+
+  /* THE BODY ITSELF, which the reset above does NOT reach: `data-design` is set
+     ON <body>, so `:where([data-design="modern"]) *` matches its DESCENDANTS and
+     leaves the element carrying the attribute with the UA default 8px margin.
+     Invisible for as long as every full-width section sat inside an `.evs-shell`
+     and the margin showed the same near-black as the page - and an 8px band of
+     page down both sides of the About hero the moment a photograph ran edge to
+     edge. It also meant a `100vw` child would overflow the body by 16px. */
+  :where([data-design="modern"]) {
+    margin: 0;
+    background-color: var(--color-surface);
+    color: var(--color-content-secondary);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  :where([data-design="modern"] img),
+  :where([data-design="modern"] video),
+  :where([data-design="modern"] svg),
+  :where([data-design="modern"] iframe) {
+    display: block;
+    max-width: 100%;
+  }
+  :where([data-design="modern"] img),
+  :where([data-design="modern"] video) { height: auto; }
+
+  :where([data-design="modern"] a) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :where([data-design="modern"] ul),
+  :where([data-design="modern"] ol) { list-style: none; }
+
+  :where([data-design="modern"] button),
+  :where([data-design="modern"] input),
+  :where([data-design="modern"] select),
+  :where([data-design="modern"] textarea) {
+    font: inherit;
+    color: inherit;
+    background: none;
+  }
+  :where([data-design="modern"] button) { cursor: pointer; }
+
+  /* Headings default to the display face and full-contrast ink, so a component
+     that forgets is still right. Size always comes from a text-* utility. */
+  :where([data-design="modern"] :is(h1, h2, h3, h4, h5, h6)) {
+    font-family: var(--font-display);
+    color: var(--color-content);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  /* Arabic is not a condensed-Latin script and the display face has no coverage
+     for it — the legacy site forced korolev onto Arabic headings anyway, which
+     is why they never looked right. Body face instead, with tracking neutralised. */
+  :where([data-design="modern"][dir="rtl"] :is(h1, h2, h3, h4, h5, h6)),
+  :where([data-design="modern"] [dir="rtl"] :is(h1, h2, h3, h4, h5, h6)) {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  :where([data-design="modern"]) ::selection {
+    background-color: var(--color-brand-500);
+    color: var(--color-content-inverse);
+  }
+
+  /* One visible focus ring everywhere, replacing the several places the legacy
+     theme suppressed it outright. */
+  :where([data-design="modern"]) :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-design="modern"] *,
+    [data-design="modern"] *::before,
+    [data-design="modern"] *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* =============================================================================
+   COMPONENT PRIMITIVES
+   Only for patterns that repeat across many pages and would otherwise be a
+   twelve-class incantation copied by hand. Everything else stays in utilities.
+   The `evs-` prefix guarantees no collision with Crafto or Bootstrap.
+   ========================================================================== */
+@layer components {
+  /* --- Layout ------------------------------------------------------------- */
+  .evs-shell {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 90rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 48rem) { .evs-shell { padding-inline: 2.5rem; } }
+  @media (min-width: 80rem) { .evs-shell { padding-inline: 4rem; } }
+
+  /* Narrower measure for reading-led sections. CENTRES, because `.evs-shell`
+     carries `margin-inline: auto` - which is right on a page that is tight all
+     the way down (/privacy-policy, /frequently-asked-questions) and wrong the
+     moment a tight section sits between full-width ones. */
+  .evs-shell-tight { max-width: 68rem; }
+
+  /* --- Inner-page hero treatment ------------------------------------------
+     FOUR gradients, not one. `evs-scrim` alone is a bottom-up wash: transparent
+     at the top and only 18% opaque at 72%. That is right for a full-screen hero
+     where the copy sits at the foot, and wrong for a PageHero, where the
+     breadcrumbs and the eyebrow sit a THIRD OF THE WAY DOWN the frame - so on a
+     bright photograph they were laid over the brightest part of it with nothing
+     behind them. On the mechanical services page the whole trail and its eyebrow
+     were effectively invisible.
+
+     Each does one job, and only where it is needed:
+       1  bottom shelf  the copy's ground
+       2  side veil     anchored to the INLINE-START, so the text edge is dark
+                        while the far side of the photograph stays clean
+       3  top fall      covers the band the breadcrumbs and eyebrow occupy, and
+                        keeps the header legible over a bright frame
+       4  vignette      a wide radial that stops the frame reading as flat
+
+     In `@layer components` rather than as an `@utility` so the RTL rule below
+     can be written at all - a gradient angle has no logical form, and an
+     `@utility` lands in the utilities layer where a components-layer override
+     would lose to it. */
+  .evs-hero-veil {
+    background-image:
+      linear-gradient(
+        to top,
+        var(--color-ink-975) 0%,
+        color-mix(in oklab, var(--color-ink-975) 82%, transparent) 22%,
+        color-mix(in oklab, var(--color-ink-975) 40%, transparent) 52%,
+        transparent 80%
+      ),
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--color-ink-975) 80%, transparent) 0%,
+        color-mix(in oklab, var(--color-ink-975) 42%, transparent) 45%,
+        transparent 82%
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--color-ink-975) 78%, transparent) 0%,
+        color-mix(in oklab, var(--color-ink-975) 34%, transparent) 30%,
+        transparent 58%
+      ),
+      radial-gradient(
+        125% 90% at 50% 40%,
+        transparent 42%,
+        color-mix(in oklab, var(--color-ink-975) 45%, transparent) 100%
+      );
+  }
+
+  [dir="rtl"] .evs-hero-veil {
+    background-image:
+      linear-gradient(
+        to top,
+        var(--color-ink-975) 0%,
+        color-mix(in oklab, var(--color-ink-975) 82%, transparent) 22%,
+        color-mix(in oklab, var(--color-ink-975) 40%, transparent) 52%,
+        transparent 80%
+      ),
+      linear-gradient(
+        to left,
+        color-mix(in oklab, var(--color-ink-975) 80%, transparent) 0%,
+        color-mix(in oklab, var(--color-ink-975) 42%, transparent) 45%,
+        transparent 82%
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--color-ink-975) 78%, transparent) 0%,
+        color-mix(in oklab, var(--color-ink-975) 34%, transparent) 30%,
+        transparent 58%
+      ),
+      radial-gradient(
+        125% 90% at 50% 40%,
+        transparent 42%,
+        color-mix(in oklab, var(--color-ink-975) 45%, transparent) 100%
+      );
+  }
+
+  /* The same measure, START-ALIGNED, for exactly that case.
+
+     A tight section inside a full-width page was indenting itself by 11rem on a
+     wide screen while the sections above and below it began at the shell's own
+     edge - so the FAQ block on a service page appeared to be centred on a page
+     where nothing else was. This is a plain max-width with no auto margin, so
+     the narrow measure survives and the left edge does not move. It goes INSIDE
+     an `.evs-shell` rather than replacing it. */
+  .evs-measure { max-inline-size: 68rem; }
+
+  /* A full-bleed horizontal scroller whose FIRST item still lines up with the
+     shell above it.
+
+     A carousel wants to run to the viewport edge - that overflowing card is the
+     affordance that tells you it scrolls - but its content has to start on the
+     same line as the heading, or the section looks broken. Padding alone only
+     agrees with the shell while the viewport is narrower than the shell's
+     max-width; past that the shell starts centring and the rail does not.
+
+     `max()` covers both: below 90rem it is the shell's own gutter, above it the
+     gutter plus however far the shell has been pushed in. One expression, no
+     media query, no JS measuring anything. */
+  .evs-rail {
+    --rail-gutter: 1.25rem;
+    padding-inline: max(var(--rail-gutter), calc((100vw - 90rem) / 2 + var(--rail-gutter)));
+  }
+  @media (min-width: 48rem) { .evs-rail { --rail-gutter: 2.5rem; } }
+  @media (min-width: 80rem) { .evs-rail { --rail-gutter: 4rem; } }
+
+  /* One vertical rhythm, fluid — replacing four hardcoded section paddings that
+     all collapsed to the same 50px on mobile. */
+  .evs-section    { padding-block: clamp(4rem, 2.4rem + 6.8vw, 8.5rem); }
+  .evs-section-sm { padding-block: clamp(2.5rem, 1.7rem + 3.4vw, 4.5rem); }
+  .evs-section-lg { padding-block: clamp(5rem, 2.6rem + 10.2vw, 12rem); }
+
+  /* --- Eyebrow ------------------------------------------------------------ */
+  .evs-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-eyebrow);
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-content-muted);
+  }
+  .evs-eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-brand-500);
+    flex: none;
+  }
+  .evs-eyebrow-bare::before { display: none; }
+
+  /* --- Buttons ------------------------------------------------------------
+     Three variants and one geometry, replacing six sizes × four colours plus a
+     wipe effect that needed an empty <span> child to work at all. */
+  .evs-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    padding: 1rem 1.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    text-align: center;
+    transition: background-color 220ms var(--ease-out),
+                border-color 220ms var(--ease-out),
+                color 220ms var(--ease-out),
+                transform 220ms var(--ease-out);
+  }
+  .evs-btn:active { transform: translateY(1px); }
+
+  .evs-btn-primary {
+    background-color: var(--color-brand-500);
+    color: var(--color-content-inverse);
+  }
+  /* `--shadow-glow` was the other token declared and never used. A green button
+     on near-black is the brightest thing on the page; giving it a matching
+     halo on hover is what makes it read as lit rather than as a pasted-on
+     rectangle. Hover only - a permanent glow on every CTA is noise. */
+  .evs-btn-primary:hover {
+    background-color: var(--color-brand-400);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .evs-btn-secondary {
+    color: var(--color-content);
+    border-color: var(--color-line-strong);
+  }
+  .evs-btn-secondary:hover {
+    background-color: var(--color-surface-elevated);
+    border-color: var(--color-content);
+  }
+
+  .evs-btn-sm { padding: 0.6875rem 1.125rem; font-size: 0.8125rem; }
+  .evs-btn-lg { padding: 1.1875rem 2.25rem; font-size: 1rem; }
+
+  /* --- Icon from an SVG file ------------------------------------------------
+     The service-category icons in /img/icons are single-colour SVGs with
+     `fill:#82bd48` written into them - the OLD brand green. Rendered as <img>
+     they would sit beside #5BCC12 looking almost-but-not-quite right, and
+     re-exporting twenty files every time the palette moves is not a system.
+
+     Masked instead: the file supplies the SHAPE and `currentColor` supplies the
+     colour, so they track the tokens like every other icon and inherit hover
+     states for free. */
+  .evs-icon-mask {
+    background-color: currentColor;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  /* --- Card ---------------------------------------------------------------- */
+  /* THE ELEVATION SYSTEM, FINALLY SWITCHED ON. `--shadow-sm/md/lg/glow` were
+     declared at the top of this file and then used four times on
+     /design-system and once on a floating button - nowhere on a real page. So
+     the site had no depth at all: every card was a flat rectangle with a
+     hairline round it.
+
+     `--shadow-md` carries `inset 0 1px 0 rgb(255 255 255 / 0.05)` - a lit top
+     edge. On a near-black surface that one line does more to make a card read
+     as raised than any amount of lightening, which is why the surface tokens
+     above only had to move one step. */
+  /* --- Form fields ---------------------------------------------------------
+     `.evs-field` WAS NEVER DEFINED. Three components have been asking for it -
+     the contact form, the franchise form and the warranty page's search box -
+     and there has been no such rule in this file, so the class did nothing at
+     all. What those forms rendered was the scoped reset above: `background:
+     none`, `border: 0`, `font: inherit`. A transparent, borderless, invisible
+     field - placeholder text floating on the card with nothing around it, no
+     focus state, and no width, so every input sized itself to its own
+     intrinsic guess. Measured on /contact: 195px inputs and a 166px select
+     inside 271px grid cells, and a 195px textarea in a 563px one.
+
+     AN UNDERLINE, NOT A BOX. Boxed fields would put five more bordered
+     rectangles inside an already bordered card; a rule under each field is the
+     same hairline this design system divides everything else with.
+
+     THE FOCUS RULE IS A GRADIENT, not a border colour, so it can SWEEP. A
+     `background-image` sized `0% 2px` at the bottom edge, grown to `100% 2px`
+     on focus - a brand-green line that draws itself across the field from the
+     reading edge. It needs no wrapper element, which a transform-based sweep
+     would, and it leaves the static hairline underneath as the resting state.
+
+     `background-position` IS PHYSICAL - there is no logical form of it - so
+     the RTL rule below flips the origin to the right edge. Without it the
+     Arabic form's underline would grow away from the text.
+
+     NO `appearance: none` ON THE SELECT: stripping it means drawing and
+     placing a chevron by hand in both directions, and the native one is
+     already right in RTL. */
+  .evs-field {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--color-line);
+    border-radius: 0;
+    background-color: transparent;
+    background-image: linear-gradient(
+      var(--color-brand-500),
+      var(--color-brand-500)
+    );
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    color: var(--color-content);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    transition: background-size 320ms var(--ease-out),
+                border-color 200ms var(--ease-out);
+  }
+  [dir="rtl"] .evs-field { background-position: 100% 100%; }
+
+  /* THE NATIVE OPTION LIST HAS TO BE TOLD ITS COLOURS.
+
+     A `<select>` renders its dropdown with the platform's own widget, and it
+     does NOT inherit the page. The scoped reset gives the select
+     `color: inherit` and `background: none`, which the closed control handles
+     - but the OPEN list drew the page's near-white text on the widget's own
+     white ground, so "EVS Doha" was white on white and the placeholder was a
+     blue system highlight in the middle of a dark card. Both options were
+     there; one of them could not be read.
+
+     `surface-raised` rather than the page colour, because the list is drawn
+     ON TOP of the card and should look like it belongs to it. */
+  .evs-field option {
+    background-color: var(--color-surface-raised);
+    color: var(--color-content);
+  }
+
+  .evs-field::placeholder { color: var(--color-content-muted); }
+  .evs-field:hover { border-bottom-color: var(--color-line-strong); }
+  .evs-field:focus { outline: none; background-size: 100% 2px; }
+
+  /* `resize: vertical` rather than the default `both`: a textarea dragged
+     wider than its grid cell breaks the form's layout, and nothing is gained. */
+  textarea.evs-field { min-height: 6.5rem; resize: vertical; }
+
+  .evs-card {
+    background-color: var(--color-surface-raised);
+    border: 1px solid var(--color-line-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: background-color 260ms var(--ease-out),
+                border-color 260ms var(--ease-out),
+                box-shadow 260ms var(--ease-out),
+                transform 260ms var(--ease-out);
+  }
+  .evs-card-interactive:hover {
+    background-color: var(--color-surface-elevated);
+    /* The brand at 40%, not a grey. A card lifting under the cursor should say
+       which site it is on - it is the one moment the palette gets to speak. */
+    border-color: color-mix(in oklab, var(--color-brand-500) 40%, transparent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  /* --- Latin run inside RTL text ------------------------------------------
+     Phone numbers and street numbers are Latin digits sitting in an Arabic
+     sentence. Without this the Arabic face renders them with Arabic-Indic
+     glyphs and the bidi algorithm reorders the groups, so "+971 56 601 7771"
+     comes out backwards.
+
+     Crafto's answer was a `urbanist` class, applied by hand to one link per
+     workshop page and to six per-digit spans inside stored address HTML. That
+     class no longer resolves on a redesigned page, and the spans are IN THE
+     DATABASE - they cannot be edited from here - so this reproduces exactly
+     what it did, under a name that says why. */
+  .evs-latin,
+  .evs-latin .urbanist,
+  .evs-prose .urbanist {
+    font-family: var(--font-sans);
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  /* AND IT MUST NOT TAKE THE ALIGNMENT WITH IT.
+
+     `direction: ltr` above is there so "+971 056 601 7771" keeps its `+` at
+     the front and its groups in order inside Arabic text. On an INLINE span
+     that is all it does. On a BLOCK - the workshop page prints the number as a
+     block-level <a> - it also flips what `text-align: start` resolves to, so
+     the number sat at the LEFT of its cell while the heading, the icon and the
+     "Call us" link under it were all at the right. Measured on /ar/evs-dubai:
+     the number's box was 657-892 and its text began at 657, against every
+     other value in the panel ending at its cell's right edge.
+
+     IT FIXES THE OTHER USES TOO, which is how the bug turned out to be wider
+     than one card: the phone numbers on /ar/contact's workshop cards are also
+     block-level `.evs-latin`, and were also sitting at the left of their cards.
+     Measured after: all five now end 26px inside their card's right edge, which
+     is that card's own padding. The one in /ar/sos is a flex item inside the
+     call button and shrinks to its text, so alignment has nothing to move. */
+  [dir="rtl"] .evs-latin { text-align: right; }
+
+  /* --- Rich text ----------------------------------------------------------
+     For the database-authored HTML in FAQ answers and About tab bodies, which
+     arrives as raw markup and cannot carry classes. */
+  .evs-prose { color: var(--color-content-secondary); }
+  .evs-prose > * + * { margin-top: 1rem; }
+  .evs-prose a {
+    color: var(--color-brand-500);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 200ms var(--ease-out);
+  }
+  .evs-prose a:hover { color: var(--color-brand-300); }
+  .evs-prose strong { color: var(--color-content); font-weight: 600; }
+  .evs-prose ul { padding-inline-start: 1.25rem; list-style: disc; }
+  .evs-prose ol { padding-inline-start: 1.25rem; list-style: decimal; }
+  .evs-prose li + li { margin-top: 0.375rem; }
+  .evs-prose li::marker { color: var(--color-brand-500); }
+
+  /* HEADINGS, TABLES AND QUOTES - the long-form half of this class.
+
+     It had none, which was fine while the only things using it were a franchise
+     form's blurb and a privacy paragraph. A blog post is 8-20 headings, and
+     `components/blog/BlogArticle.js` was carrying its own `<style jsx global>`
+     block of hard-coded hex values and `--alt-font` to make up for it - a second
+     type scale, on one page, that no token could reach.
+
+     `> * + *` above sets a 1rem rhythm for everything; a heading needs more
+     space before it than after, which is what these margins do. */
+  .evs-prose :is(h1, h2, h3, h4) {
+    color: var(--color-content);
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  .evs-prose :is(h1, h2) { font-size: var(--text-heading); line-height: 1.15; }
+  .evs-prose :is(h3, h4) { font-size: var(--text-subheading); line-height: 1.25; }
+  .evs-prose > :is(h1, h2) + * { margin-top: 0.75rem; }
+  .evs-prose > :is(h3, h4) + * { margin-top: 0.5rem; }
+  .evs-prose > * + :is(h1, h2) { margin-top: 2.75rem; }
+  .evs-prose > * + :is(h3, h4) { margin-top: 2rem; }
+
+  .evs-prose blockquote {
+    border-inline-start: 2px solid var(--color-brand-500);
+    padding-inline-start: 1.25rem;
+    color: var(--color-content);
+  }
+
+  .evs-prose img { border-radius: var(--radius-md); }
+
+  /* A table wider than its column is the one thing here that cannot reflow, so
+     it scrolls on its own rather than pushing the page sideways. */
+  .evs-prose table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .evs-prose :is(th, td) {
+    border: 1px solid var(--color-line-subtle);
+    padding: 0.625rem 0.875rem;
+    text-align: start;
+  }
+  .evs-prose th { color: var(--color-content); font-weight: 600; }
+}
+
+/* =============================================================================
+   UTILITIES
+   A gradient is the one thing that cannot be expressed as a colour token, so the
+   scrims are utilities rather than variables. Three strengths, because a hero
+   over a bright clip and a card over a dark photo need different amounts.
+   ========================================================================== */
+@utility evs-scrim {
+  background-image: linear-gradient(
+    to top,
+    var(--color-ink-975) 0%,
+    color-mix(in oklab, var(--color-ink-975) 62%, transparent) 38%,
+    color-mix(in oklab, var(--color-ink-975) 18%, transparent) 72%,
+    transparent 100%
+  );
+}
+
+@utility evs-scrim-strong {
+  background-image: linear-gradient(
+    to top,
+    var(--color-ink-975) 0%,
+    color-mix(in oklab, var(--color-ink-975) 85%, transparent) 40%,
+    color-mix(in oklab, var(--color-ink-975) 58%, transparent) 72%,
+    color-mix(in oklab, var(--color-ink-975) 32%, transparent) 100%
+  );
+}
+
+@utility evs-scrim-soft {
+  background-image: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-ink-975) 80%, transparent) 0%,
+    color-mix(in oklab, var(--color-ink-975) 35%, transparent) 45%,
+    transparent 85%
+  );
+}
+@utility evs-scrim-soft {
+  background-image: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-ink-975) 80%, transparent) 0%,
+    color-mix(in oklab, var(--color-ink-975) 35%, transparent) 45%,
+    transparent 85%
+  );
+}

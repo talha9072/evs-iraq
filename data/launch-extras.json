@@ -1,0 +1,157 @@
+{
+  "_comment": "Two extra sections per inner page: the fault patterns a workshop actually sees, and what a visit will look like. Rewritten for Iraq - the fault list here leads with the onboard charger, because charging off a neighbourhood generator is the Iraqi failure mode and it does not exist in the Gulf builds.",
+  "faults": {
+    "brand": {
+      "en": {
+        "eyebrow": "What we see",
+        "heading": "The faults that bring these cars in",
+        "intro": "Four patterns account for most of the work on electrified cars in Iraq. None is exotic, and the first is specific to how cars are charged here.",
+        "items": [
+          {
+            "title": "Charging has got slower, or stops",
+            "body": "The onboard charger, usually - not the battery. Charging off a generator that drifts in voltage and frequency cooks it over time, and this is the most Iraqi fault on the list."
+          },
+          {
+            "title": "The car is completely dead",
+            "body": "No lights, no screens, no door unlock. Almost always the 12-volt battery rather than the main pack, and at 50 degrees it rarely reaches its rated life."
+          },
+          {
+            "title": "Range has quietly dropped",
+            "body": "Usually thermal, not cells. A cooling circuit running below par ages a pack without ever throwing a warning light - and Iraqi summers load it harder than anywhere else in the region."
+          },
+          {
+            "title": "Warnings on an imported car",
+            "body": "Often the software region rather than a fault: a car coded for another market reporting things that are true there and not here."
+          }
+        ]
+      },
+      "ar": {
+        "eyebrow": "ما نراه",
+        "heading": "الأعطال التي تُحضر هذه السيارات إلينا",
+        "intro": "أربعة أنماط تمثل معظم العمل على السيارات الكهربائية في العراق. لا شيء منها غريب، والأول خاص بطريقة شحن السيارات هنا.",
+        "items": [
+          {
+            "title": "صار الشحن أبطأ، أو يتوقف",
+            "body": "الشاحن الداخلي غالباً — لا البطارية. فالشحن من مولّدة يتذبذب جهدها وترددها يُنهكه مع الوقت، وهذا أكثر الأعطال عراقية في القائمة."
+          },
+          {
+            "title": "السيارة ميتة تماماً",
+            "body": "لا أضواء ولا شاشات ولا فتح أبواب. بطارية 12 فولت غالباً لا البطارية الرئيسية، وعند خمسين درجة نادراً ما تبلغ عمرها المقدّر."
+          },
+          {
+            "title": "انخفض المدى بهدوء",
+            "body": "حراري عادة لا خلوي. فدارة تبريد دون المستوى تُشيخ البطارية دون أن تُشعل أي تحذير — وصيف العراق يُجهدها أكثر من أي مكان في المنطقة."
+          },
+          {
+            "title": "تحذيرات في سيارة مستوردة",
+            "body": "إقليم البرمجة غالباً لا عطل حقيقي: سيارة مرمّزة لسوق أخرى تُبلغ عن أمور صحيحة هناك لا هنا."
+          }
+        ]
+      }
+    },
+    "service": {
+      "en": {
+        "eyebrow": "What we see",
+        "heading": "What usually turns out to be wrong",
+        "intro": "Four things account for most of what comes through the door on this side of the workshop in Iraq, and the order is not the one owners expect.",
+        "items": [
+          {
+            "title": "It is the supply, not the car",
+            "body": "Unstable mains and generator charging damage onboard chargers and low-voltage electronics. We check what the car has been fed before we open anything."
+          },
+          {
+            "title": "It is thermal, not electrical",
+            "body": "Coolant, pump flow and condenser condition explain more lost range and more odd behaviour in this climate than failed cells ever do."
+          },
+          {
+            "title": "It is the software region",
+            "body": "An imported car coded for another market reports faults that are real there and meaningless here. Reading the coding first saves replacing a part that was never broken."
+          },
+          {
+            "title": "It is a wear item that aged early",
+            "body": "Rubber, filters, fluids and the 12-volt battery all live shorter lives at 50 degrees than the service schedule assumes."
+          }
+        ]
+      },
+      "ar": {
+        "eyebrow": "ما نراه",
+        "heading": "ما يتبيّن أنه العطل عادة",
+        "intro": "أربعة أمور تمثل معظم ما يصل إلى هذا الجانب من الورشة في العراق، وترتيبها ليس ما يتوقعه المالكون.",
+        "items": [
+          {
+            "title": "المشكلة في التغذية لا في السيارة",
+            "body": "التيار غير المستقر والشحن من المولّدات يُتلفان الشواحن الداخلية وإلكترونيات الجهد المنخفض. نفحص بماذا غُذّيت السيارة قبل أن نفتح أي شيء."
+          },
+          {
+            "title": "المشكلة حرارية لا كهربائية",
+            "body": "سائل التبريد وتدفق المضخة وحالة المكثف تفسّر من المدى المفقود والسلوك الغريب في هذا المناخ أكثر مما تفسّره الخلايا التالفة."
+          },
+          {
+            "title": "المشكلة في إقليم البرمجة",
+            "body": "سيارة مستوردة مرمّزة لسوق أخرى تُبلغ عن أعطال حقيقية هناك وبلا معنى هنا. وقراءة الترميز أولاً توفّر استبدال قطعة لم تتعطل أصلاً."
+          },
+          {
+            "title": "قطعة تآكل شاخت مبكراً",
+            "body": "المطاط والفلاتر والسوائل وبطارية 12 فولت كلها تعيش أعماراً أقصر عند خمسين درجة مما يفترضه جدول الصيانة."
+          }
+        ]
+      }
+    }
+  },
+  "process": {
+    "en": {
+      "eyebrow": "How it works",
+      "heading": "What a visit will look like",
+      "intro": "The Baghdad centre has not opened yet, so this is what we are building toward rather than what you can book today.",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Tell us the symptom",
+          "body": "Not the diagnosis. What the car is doing, when it started, and whether anything changed before it did."
+        },
+        {
+          "n": "02",
+          "title": "Diagnostic first",
+          "body": "Platform-specific tooling, not a generic scanner. You get the report, including the codes, whatever you decide to do next."
+        },
+        {
+          "n": "03",
+          "title": "A quote you can read",
+          "body": "What is wrong, what it costs, and what happens if you leave it. If a repair is viable instead of a replacement, we will say so."
+        },
+        {
+          "n": "04",
+          "title": "The work, and the record",
+          "body": "Dated invoice, parts specification and a written description — which is what protects your warranty position and your resale value."
+        }
+      ]
+    },
+    "ar": {
+      "eyebrow": "كيف تسير",
+      "heading": "كيف ستبدو الزيارة",
+      "intro": "لم يفتتح مركز بغداد بعد، لذا هذا ما نبنيه لا ما يمكنك حجزه اليوم.",
+      "steps": [
+        {
+          "n": "٠١",
+          "title": "أخبرنا بالعرض",
+          "body": "لا بالتشخيص. ماذا تفعل السيارة، ومتى بدأ ذلك، وهل تغيّر شيء قبله."
+        },
+        {
+          "n": "٠٢",
+          "title": "التشخيص أولاً",
+          "body": "أدوات خاصة بالمنصة لا جهاز فحص عام. وتحصل على التقرير بما فيه الرموز، مهما قررت بعد ذلك."
+        },
+        {
+          "n": "٠٣",
+          "title": "عرض سعر مفهوم",
+          "body": "ما العطل، وكم يكلّف، وماذا يحدث إن تركته. وإن كان الإصلاح ممكناً بدل الاستبدال فسنقول ذلك."
+        },
+        {
+          "n": "٠٤",
+          "title": "العمل، والسجل",
+          "body": "فاتورة مؤرخة ومواصفات القطع ووصف مكتوب — وهو ما يحمي موقف ضمانك وقيمة إعادة بيعك."
+        }
+      ]
+    }
+  }
+}

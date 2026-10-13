@@ -1,0 +1,47 @@
+# Build settings live here rather than in the Netlify UI so the repo and the
+# deploy can never drift apart. The Next.js runtime is what serves pages and
+# API routes; without it Netlify publishes .next as plain files and every
+# route 404s.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+  # Netlify's secrets scanner fails a build when it finds the VALUE of any
+  # environment variable in the published output. Every NEXT_PUBLIC_* variable is
+  # inlined into the client bundle on purpose - that is what the prefix means - so
+  # the scanner finds all four and stops the deploy.
+  #
+  # These two are safe to publish and are meant to be:
+  #
+  #   NEXT_PUBLIC_PLATFORM_SUPABASE_URL / _ANON_KEY   the platform project
+  #
+  # The older blog project's pair used to be listed here too. Nothing reads it
+  # any more - lib/supabase/public-client.js and lib/supabase/service-role.js
+  # were its only callers and neither was imported by anything - so the
+  # variables are gone and the exemption goes with them. If one of them ever
+  # reappears in the output, that is a mistake and the build SHOULD fail.
+  #
+  # An anon key is a public key. It carries no privileges of its own - every table
+  # it can reach is behind RLS, and the policies here are `select` where
+  # `status = 'published'`. The keys that are NOT safe are the service-role ones,
+  # and those are deliberately absent from this list: if the scanner ever finds
+  # SUPABASE_SERVICE_ROLE_KEY in the output, the build SHOULD fail.
+  #
+  # NEXT_PUBLIC_BRANCH and NEXT_PUBLIC_LOCALES are also inlined but are not
+  # secrets, so the scanner does not treat them as ones.
+  [build.environment]
+      # NEXT_PUBLIC_GTM_ID is listed for the same reason and is public by
+  # definition: a GTM container ID ships in the HTML of every site that uses
+  # one. Listed pre-emptively so a first deploy for a new country cannot fail
+  # on it.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_PLATFORM_SUPABASE_URL,NEXT_PUBLIC_PLATFORM_SUPABASE_ANON_KEY,NEXT_PUBLIC_GTM_ID"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Blog cover images are hosted in Supabase Storage. Netlify's image CDN
+# refuses remote sources unless they are allow-listed, so /.netlify/images
+# returns 400 for them without this.
+[images]
+  remote_images = ['https://[a-z0-9-]+\.supabase\.co/storage/v1/object/public/.*']

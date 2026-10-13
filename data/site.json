@@ -1,0 +1,45 @@
+{
+  "_comment": "The branch row and its cities, hand-written because this deployment has no database. Mirrors the shape lib/static-data.js hands to branchTokens() and the chrome. Everything a trading business would have — phone, email, WhatsApp, hours, reviews — is null ON PURPOSE: EVS has not opened in Iraq, and a placeholder is how a Business Profile gets suspended on the day the real one is claimed.",
+
+  "branch": {
+    "slug": "iraq",
+    "name": "EVS Iraq",
+    "country_code": "IQ",
+    "country_name": {
+      "en": "Iraq",
+      "ar": "العراق"
+    },
+    "_country_name_the": "English says 'in Iraq', not 'in the Iraq', so country_the equals country and this stays null — branchTokens() falls back to country_name. Compare 'the UAE', which does need it.",
+    "country_name_the": null,
+    "site_url": "https://evsiraq.com",
+    "support_phone": null,
+    "support_phone_display": null,
+    "whatsapp_number": null,
+    "support_email": null,
+    "contact_path": "/contact",
+    "social_links": {},
+    "opening_hours": {},
+    "google_reviews_url": null,
+    "google_reviews_count": null,
+    "instagram_url": null,
+    "locales": [
+      "en",
+      "ar"
+    ],
+    "is_published": true,
+    "coming_soon": true
+  },
+
+  "_cities_comment": "ONE CITY, AND THAT IS THE POINT. Bahrain listed six because the island is 780 km² and a single workshop genuinely reaches all of it. Iraq is 438,000 km²: Basra is 550 km from Baghdad and Erbil 350 km, so a Baghdad centre does NOT serve them and {{areas}} must not say it does. Basra and Erbil are discussed in the body copy as the separate markets they are, with no claim of premises. Add a city here only when there is a workshop in it.",
+  "cities": [
+    {
+      "slug": "baghdad",
+      "name": {
+        "en": "Baghdad",
+        "ar": "بغداد"
+      },
+      "is_primary": true,
+      "sort_order": 1
+    }
+  ]
+}

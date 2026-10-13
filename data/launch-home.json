@@ -1,0 +1,165 @@
+{
+  "_comment": "The five hand-written home sections. NOT a translation of the Bahrain file — Iraq's EV story is a different one and copying it would have produced the near-duplicate pages this site exists to avoid. Bahrain's angle was 'one centre covers an island 780 km across'; Iraq is 438,000 km² and that argument inverts. Iraq's real angles are three nobody writes about: the most extreme heat in the EVS network (Basra holds the national record above 53°C, Baghdad has reached 52°C, 50°C is routine), a grid running roughly 29 GW against demand above 60 GW so charging happens off neighbourhood generators, and a market that is far more hybrid than electric. Figures are attributed in the copy rather than asserted, and nothing names the Cabinet resolution number that circulates for the EV tax exemptions — it did not verify.",
+
+  "en": {
+    "intro": {
+      "eyebrow": "EV & hybrid service in Iraq",
+      "heading": "The hardest place in the region to own an electric car..",
+      "body": [
+        "Iraq is importing electric and hybrid cars faster than it is building anywhere to fix them. The Green Taxi initiative sets a phased target of a million electric vehicles, customs and tax relief has made the landed price competitive, and Chinese marques in particular are arriving in volume through importers rather than through factory dealer networks.",
+        "What has not arrived is the workshop side. A car bought from an importer usually comes without a service contract, without local diagnostic coverage, and sometimes without the software region it needs. When something goes wrong with the high-voltage system there is very little independent capacity in the country able to open it safely.",
+        "That is the gap EVS is opening in Baghdad to fill. We are a specialist, not a general garage: high-voltage diagnostics, battery state-of-health testing, drive units, thermal management, software and region coding — plus the ordinary work every car needs, done by people who will not disconnect the wrong thing on an electric one."
+      ]
+    },
+
+    "brands": {
+      "eyebrow": "Brands",
+      "heading": "The cars we are set up for..",
+      "body": "Iraq is a hybrid market before it is an electric one — Toyota's hybrids and plug-in hybrids are widely held, and the country is among the region's largest hybrid buyers. Alongside them, Chinese EVs arrive through importers and German and Korean models through the used trade. All three groups need things a general workshop cannot do.",
+      "featured": ["byd", "tesla", "bmw", "hyundai", "kia", "mercedes-benz"],
+      "cta": "All brands we service"
+    },
+
+    "charging": {
+      "eyebrow": "Charging",
+      "heading": "Charging in Iraq, honestly..",
+      "body": [
+        "This is the part no brochure covers. Iraq's grid produced roughly 29 GW against demand above 60 GW going into this summer, and the Ministry of Electricity's own shortfall figures leave many households on a few hours of state power a day. In practice an EV in Baghdad charges from a neighbourhood generator for part of the week.",
+        "That matters for the car, not just the convenience. A generator under load does not hold a clean 50 Hz at a steady voltage, and an onboard charger is the component that absorbs the difference. Sagging voltage and frequency drift make a charger run hot, throttle, or stop mid-session — and repeated hot cycling is what eventually kills it. The charger, not the battery, is the first expensive thing that fails on a car charged this way."
+      ],
+      "points": [
+        "Charge off mains when the state supply is on, and treat the generator as the fallback rather than the default",
+        "If you must charge off a generator, use the slowest setting the car offers — a lower current is far easier on both the generator and the onboard charger",
+        "Heat and charging compound: a pack that is already soaked at 50°C should not be fast-charged on top of it"
+      ]
+    },
+
+    "areas": {
+      "eyebrow": "Coverage",
+      "heading": "Baghdad first, and we will say why..",
+      "body": "Iraq is roughly 438,000 square kilometres. Basra is about 550 km from Baghdad and Erbil about 350 — so unlike a small Gulf market, one workshop does not serve the country, and we are not going to pretend otherwise. The Baghdad centre is the first, chosen because the capital holds the largest concentration of imported electric and hybrid cars in Iraq. Basra and Erbil are real and separate markets, and each would need its own site.",
+      "list": [
+        "Baghdad — the first centre, and where the volume is",
+        "Karrada",
+        "Mansour",
+        "Al-Jadriya",
+        "Zayouna",
+        "Basra — a separate market, and the hottest in the country",
+        "Erbil — a separate market, with the steadier grid",
+        "Mosul, Najaf, Karbala — served from Baghdad, by arrangement"
+      ]
+    },
+
+    "faqs": {
+      "eyebrow": "Questions",
+      "heading": "Before you ask..",
+      "items": [
+        {
+          "q": "Is EVS open in Iraq yet?",
+          "a": "Not yet. The Baghdad centre is in preparation and this site is how you can follow it. There is no address or phone number to give you today, and we would rather say that plainly than publish a placeholder. Register your interest and we will tell you the moment we open."
+        },
+        {
+          "q": "Can I charge an electric car off a neighbourhood generator?",
+          "a": "You can, and many owners have no alternative — but do it on the lowest current the car offers. A generator under load drifts in both voltage and frequency, and the onboard charger is what absorbs that. Running it hot and throttled, session after session, is what eventually fails it, and an onboard charger is a far more expensive repair than most owners expect. Charge off mains when the state supply is on and keep the generator as the fallback."
+        },
+        {
+          "q": "How does Iraq's heat affect an EV battery?",
+          "a": "More than fast charging does, and more here than anywhere else in the region. Basra holds Iraq's recorded temperature high above 53°C, Baghdad has reached 52°C, and 50°C is an ordinary July afternoon. Sustained ambient load is the hardest thing a pack faces, and a cooling circuit performing at eighty per cent throws no warning light — it simply ages the battery, and the owner finds out three years later as lost range. An annual thermal and high-voltage check matters more in Iraq than in the markets these cars were validated in."
+        },
+        {
+          "q": "My car is a hybrid, not an electric. Do you work on it?",
+          "a": "Yes, and in Iraq that is most of the work. A hybrid has two things to maintain, not one: a petrol engine with its own oil, filters, plugs and cooling circuit, and a high-voltage battery with its own thermal management and state of health. Owners who bought expecting electric-car running costs routinely under-budget for the engine half, and workshops that only know the engine half miss the battery entirely."
+        },
+        {
+          "q": "I bought an imported car with no local dealer. Can it still be serviced?",
+          "a": "That is the normal case here, not the exception. What it usually needs is the software side sorted — the region the infotainment and telematics were coded for, which affects maps, apps and connectivity, and in some cases charging behaviour. Beyond that it is diagnostics, wear items and high-voltage work, none of which depends on a dealer existing. Keep whatever import paperwork came with the car; it decides what any warranty claim can look like."
+        },
+        {
+          "q": "Why Baghdad and not Basra or Erbil?",
+          "a": "Because Iraq is too large for one workshop to serve honestly. Baghdad holds the largest concentration of imported electric and hybrid cars in the country, so it is the first centre. Basra is roughly 550 km away and Erbil 350, and neither is a drive you make for a diagnostic — each is its own market and would need its own site. We would rather open one properly than claim coverage we do not have."
+        }
+      ]
+    }
+  },
+
+  "ar": {
+    "intro": {
+      "eyebrow": "خدمة السيارات الكهربائية والهجينة في العراق",
+      "heading": "أصعب مكان في المنطقة لاقتناء سيارة كهربائية..",
+      "body": [
+        "يستورد العراق سيارات كهربائية وهجينة بوتيرة أسرع من بناء ورش قادرة على إصلاحها. فمبادرة «التاكسي الأخضر» تضع هدفاً تدريجياً يبلغ مليون سيارة كهربائية، وأتاحت الإعفاءات الكمركية والضريبية سعراً تنافسياً بعد الوصول، وتدخل العلامات الصينية خصوصاً بكميات عبر المستوردين لا عبر وكالات المصنّعين.",
+        "ما لم يصل بعد هو الجانب الفني. فالسيارة المشتراة من مستورد تأتي غالباً بلا عقد صيانة، وبلا تغطية تشخيصية محلية، وأحياناً بلا إقليم البرمجة الذي تحتاجه. وعند حدوث خلل في نظام الجهد العالي، فالقدرة المستقلة على فتحه بأمان داخل البلد محدودة جداً.",
+        "هذه هي الفجوة التي تفتتح إي في إس مركزها في بغداد لسدّها. نحن متخصصون لا ورشة عامة: تشخيص الجهد العالي، وفحص صحة البطارية، ووحدات الدفع، وإدارة الحرارة، والبرمجيات وضبط الإقليم — إضافة إلى الأعمال الاعتيادية التي تحتاجها كل سيارة، ينفذها من لا يفصل الشيء الخطأ في سيارة كهربائية."
+      ]
+    },
+
+    "brands": {
+      "eyebrow": "العلامات",
+      "heading": "السيارات التي نستعد لها..",
+      "body": "العراق سوق هجينة قبل أن يكون سوقاً كهربائية — فسيارات تويوتا الهجينة والهجينة القابلة للشحن منتشرة على نطاق واسع، والعراق من أكبر مشتري الهجينة في المنطقة. وإلى جانبها تدخل السيارات الكهربائية الصينية عبر المستوردين، والألمانية والكورية عبر تجارة المستعمل. والمجموعات الثلاث تحتاج ما لا تستطيعه ورشة عامة.",
+      "featured": ["byd", "tesla", "bmw", "hyundai", "kia", "mercedes-benz"],
+      "cta": "جميع العلامات التي نخدمها"
+    },
+
+    "charging": {
+      "eyebrow": "الشحن",
+      "heading": "الشحن في العراق، بصراحة..",
+      "body": [
+        "هذا هو الجزء الذي لا يغطيه أي كتيّب. فالشبكة العراقية أنتجت نحو 29 غيغاواط مقابل طلب يتجاوز 60 غيغاواط مع دخول هذا الصيف، وأرقام العجز لدى وزارة الكهرباء نفسها تترك بيوتاً كثيرة على ساعات قليلة من التيار الوطني يومياً. وعملياً تُشحن السيارة الكهربائية في بغداد من مولّدة الحي جزءاً من الأسبوع.",
+        "وهذا يهم السيارة لا الراحة وحدها. فالمولّدة تحت الحمل لا تثبّت تردد 50 هرتز ولا تحافظ على جهد مستقر، والشاحن الداخلي هو ما يمتص الفرق. فهبوط الجهد وانحراف التردد يجعلان الشاحن يسخن أو يخفّض قدرته أو يتوقف في منتصف الشحن — والتكرار الحراري هو ما يقتله في النهاية. الشاحن الداخلي، لا البطارية، هو أول عطل مكلف في سيارة تُشحن بهذه الطريقة."
+      ],
+      "points": [
+        "اشحن من التيار الوطني حين يكون متوفراً، واجعل المولّدة بديلاً احتياطياً لا خياراً أساسياً",
+        "إن اضطررت للشحن من مولّدة فاستخدم أبطأ إعداد تتيحه السيارة — فالتيار الأقل أرحم بالمولّدة وبالشاحن الداخلي معاً",
+        "الحرارة والشحن يتراكمان: بطارية مشبعة أصلاً بحرارة 50 درجة لا ينبغي شحنها سريعاً فوق ذلك"
+      ]
+    },
+
+    "areas": {
+      "eyebrow": "التغطية",
+      "heading": "بغداد أولاً، وسنقول لماذا..",
+      "body": "مساحة العراق نحو 438 ألف كيلومتر مربع. البصرة تبعد عن بغداد زهاء 550 كيلومتراً وأربيل نحو 350 — فخلافاً لسوق خليجية صغيرة، لا تخدم ورشة واحدة البلد كله، ولن ندّعي غير ذلك. مركز بغداد هو الأول، واختير لأن العاصمة تضم أكبر تجمع للسيارات الكهربائية والهجينة المستوردة في العراق. والبصرة وأربيل سوقان حقيقيتان منفصلتان، وكل منهما يحتاج موقعه الخاص.",
+      "list": [
+        "بغداد — المركز الأول، وحيث يتركز الحجم",
+        "الكرادة",
+        "المنصور",
+        "الجادرية",
+        "زيونة",
+        "البصرة — سوق منفصلة، والأشد حرارة في البلد",
+        "أربيل — سوق منفصلة، وشبكتها أكثر استقراراً",
+        "الموصل والنجف وكربلاء — تُخدَم من بغداد بالتنسيق المسبق"
+      ]
+    },
+
+    "faqs": {
+      "eyebrow": "أسئلة",
+      "heading": "قبل أن تسأل..",
+      "items": [
+        {
+          "q": "هل افتُتح مركز إي في إس في العراق؟",
+          "a": "ليس بعد. مركز بغداد قيد التجهيز، وهذا الموقع هو وسيلتك لمتابعته. لا يوجد عنوان ولا رقم هاتف نعطيك إياه اليوم، ونفضّل قول ذلك بوضوح على نشر معلومات مؤقتة. سجّل اهتمامك وسنخبرك لحظة الافتتاح."
+        },
+        {
+          "q": "هل يمكن شحن سيارة كهربائية من مولّدة الحي؟",
+          "a": "نعم، ولا بديل لدى كثير من المالكين — لكن افعل ذلك بأقل تيار تتيحه السيارة. فالمولّدة تحت الحمل ينحرف جهدها وترددها معاً، والشاحن الداخلي هو ما يمتص ذلك. وتشغيله ساخناً ومخفّض القدرة، جلسة بعد جلسة، هو ما يعطله في النهاية، وإصلاح الشاحن الداخلي أغلى بكثير مما يتوقعه معظم المالكين. اشحن من التيار الوطني حين يتوفر، واجعل المولّدة احتياطاً."
+        },
+        {
+          "q": "كيف تؤثر حرارة العراق في بطارية السيارة الكهربائية؟",
+          "a": "أكثر من الشحن السريع، وأكثر هنا من أي مكان آخر في المنطقة. فالبصرة تحمل أعلى درجة حرارة مسجلة في العراق فوق 53 درجة، وبلغت بغداد 52 درجة، و50 درجة ظهيرة تموز اعتيادية. والحمل الحراري المستمر هو أقسى ما تواجهه البطارية، ودارة تبريد تعمل بثمانين بالمئة من كفاءتها لا تُشعل أي مؤشر تحذير — إنما تُشيخ البطارية فحسب، ويكتشف المالك ذلك بعد ثلاث سنوات على شكل مدى مفقود. والفحص الحراري وفحص الجهد العالي سنوياً أهم في العراق منه في الأسواق التي اعتُمدت فيها هذه السيارات."
+        },
+        {
+          "q": "سيارتي هجينة لا كهربائية. هل تعملون عليها؟",
+          "a": "نعم، وهي في العراق معظم العمل. فالسيارة الهجينة فيها ما يُصان مرتين لا مرة: محرك بنزين بزيته وفلاتره وشمعاته ودارة تبريده، وبطارية جهد عالٍ بإدارتها الحرارية وصحتها. والمالكون الذين اشتروا متوقعين تكاليف تشغيل سيارة كهربائية يقدّرون نفقات شق المحرك أقل من حقيقتها، والورش التي تعرف شق المحرك وحده تغفل البطارية تماماً."
+        },
+        {
+          "q": "اشتريت سيارة مستوردة بلا وكيل محلي. هل يمكن صيانتها؟",
+          "a": "هذه هي الحالة الاعتيادية هنا لا الاستثناء. وما تحتاجه عادة هو ضبط الجانب البرمجي — الإقليم الذي بُرمجت عليه شاشة المعلومات وأنظمة الاتصال، وهو يؤثر في الخرائط والتطبيقات والاتصال، وفي سلوك الشحن أحياناً. وما عدا ذلك تشخيص وقطع تآكل وأعمال جهد عالٍ، ولا شيء منها يتوقف على وجود وكيل. احتفظ بأوراق الاستيراد التي جاءت مع السيارة؛ فهي تحدد شكل أي مطالبة ضمان."
+        },
+        {
+          "q": "لماذا بغداد وليس البصرة أو أربيل؟",
+          "a": "لأن العراق أكبر من أن تخدمه ورشة واحدة بصدق. بغداد تضم أكبر تجمع للسيارات الكهربائية والهجينة المستوردة في البلد، فكانت المركز الأول. والبصرة تبعد زهاء 550 كيلومتراً وأربيل 350، وليست أي منهما مسافة تقطعها لأجل فحص تشخيصي — كل منهما سوق قائمة بذاتها وتحتاج موقعها. ونفضّل أن نفتتح واحداً كما ينبغي على أن ندّعي تغطية لا نملكها."
+        }
+      ]
+    }
+  }
+}

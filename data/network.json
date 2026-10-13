@@ -1,0 +1,142 @@
+{
+  "countries": [
+    {
+      "slug": "uae",
+      "code": "ae",
+      "url": "https://evsuae.com",
+      "status": "open",
+      "since": 2020,
+      "name": {
+        "en": "United Arab Emirates",
+        "ar": "الإمارات العربية المتحدة"
+      },
+      "city": {
+        "en": "Dubai, Abu Dhabi, Sharjah, Ajman & Al Ain",
+        "ar": "دبي وأبوظبي والشارقة وعجمان والعين"
+      },
+      "blurb": {
+        "en": "Where EVS started. Seven workshops across the Emirates covering high-voltage battery work, programming, mechanical, body and paint.",
+        "ar": "حيث بدأت إي في إس. سبع ورش في أنحاء الإمارات تغطي أعمال بطاريات الجهد العالي والبرمجة والميكانيكا والهيكل والصبغ."
+      }
+    },
+    {
+      "slug": "saudi",
+      "code": "sa",
+      "url": "https://evsksa.com",
+      "status": "open",
+      "name": {
+        "en": "Saudi Arabia",
+        "ar": "المملكة العربية السعودية"
+      },
+      "city": {
+        "en": "Riyadh",
+        "ar": "الرياض"
+      },
+      "blurb": {
+        "en": "The largest aftermarket in the Gulf — just over half of all GCC vehicle service spend.",
+        "ar": "أكبر سوق لما بعد البيع في الخليج — أكثر من نصف إنفاق صيانة المركبات في دول المجلس."
+      }
+    },
+    {
+      "slug": "qatar",
+      "code": "qa",
+      "url": "https://evsqtr.com",
+      "status": "open",
+      "name": {
+        "en": "Qatar",
+        "ar": "قطر"
+      },
+      "city": {
+        "en": "Doha",
+        "ar": "الدوحة"
+      },
+      "blurb": {
+        "en": "Specialist EV service in Doha, including extended-range vehicles that need both high-voltage and engine capability.",
+        "ar": "صيانة متخصصة للسيارات الكهربائية في الدوحة، بما فيها السيارات ممتدة المدى التي تحتاج قدرة على الجهد العالي والمحركات معاً."
+      }
+    },
+    {
+      "slug": "oman",
+      "code": "om",
+      "url": "https://evsoman.com",
+      "status": "open",
+      "name": {
+        "en": "Oman",
+        "ar": "سلطنة عُمان"
+      },
+      "city": {
+        "en": "Muscat",
+        "ar": "مسقط"
+      },
+      "blurb": {
+        "en": "Serving a fast-growing Omani EV parc — battery health, programming and bodywork.",
+        "ar": "نخدم أسطولاً عُمانياً متنامياً من السيارات الكهربائية — صحة البطارية والبرمجة والهيكل."
+      }
+    },
+    {
+      "slug": "bahrain",
+      "code": "bh",
+      "url": "https://evsbah.com",
+      "status": "soon",
+      "name": {
+        "en": "Bahrain",
+        "ar": "البحرين"
+      },
+      "city": {
+        "en": "Manama",
+        "ar": "المنامة"
+      },
+      "blurb": {
+        "en": "Opening soon. The Bahrain centre is in preparation.",
+        "ar": "قريباً. مركز البحرين قيد التجهيز."
+      }
+    },
+    {
+      "slug": "iraq",
+      "code": "iq",
+      "url": null,
+      "status": "soon",
+      "name": {
+        "en": "Iraq",
+        "ar": "العراق"
+      },
+      "city": {
+        "en": "Baghdad",
+        "ar": "بغداد"
+      },
+      "blurb": {
+        "en": "Opening soon. The Baghdad centre is in preparation.",
+        "ar": "قريباً. مركز بغداد قيد التجهيز."
+      }
+    },
+    {
+      "slug": "bangladesh",
+      "code": "bd",
+      "url": null,
+      "status": "planned",
+      "name": {
+        "en": "Bangladesh",
+        "ar": "بنغلاديش"
+      },
+      "city": {
+        "en": "Dhaka",
+        "ar": "دكا"
+      },
+      "blurb": {
+        "en": "Planned.",
+        "ar": "قيد التخطيط."
+      }
+    }
+  ],
+  "group": {
+    "url": "https://evsworldwide.com",
+    "name": {
+      "en": "EVS Worldwide",
+      "ar": "إي في إس العالمية"
+    },
+    "blurb": {
+      "en": "The group site — market intelligence on EV aftersales in 180+ countries, and franchise enquiries.",
+      "ar": "موقع المجموعة — تحليلات سوق خدمات ما بعد البيع للسيارات الكهربائية في أكثر من 180 دولة، واستفسارات الامتياز."
+    }
+  }
+}

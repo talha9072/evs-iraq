@@ -1,0 +1,101 @@
+# Netlify redirects. One file, three sites — evsuae.com, evsoman.com, evsqtr.com —
+# so every destination below has to exist on ALL THREE. Verified 4 Sep 2026.
+#
+# THE ONE RULE: never point a redirect at a page that does not exist.
+#
+# Four rules in this file used to break it. They sent old URLs to
+# /battery-replacement, /pre-purchase-inspection, /ac-repair-service and
+# /brake-service — pages from the pre-Next site that were never rebuilt — so
+# Google followed a 301 and landed on a 404. That is worse than no rule at all:
+# a plain 404 is dropped, a redirect chain into one is crawled again and again.
+# Search Console had 19 not-found and 23 page-with-redirect URLs, and 12 of the
+# 14 chains tested ended dead.
+#
+# So: after editing this file, fetch every source URL once and confirm the chain
+# ends at 200. There is a script for it in the scratchpad; the check takes a minute
+# and is the whole reason this comment exists.
+
+# ---------------------------------------------------------------- car brands
+# The old flat URLs from before the brand tree. All still linked from elsewhere.
+/rox-01/                     /rox/rox-01            301
+/zeekr-x-car/                /zeekr/zeekr-x         301
+/zeekr-001/                  /zeekr/zeekr-001       301
+/avatr-11-car/               /avatr/avatr-11        301
+/avatr-12-car/               /avatr/avatr-12        301
+/byd-han/                    /byd/byd-han           301
+/byd-seal/                   /byd/byd-seal          301
+/byd-atto-3/                 /byd/byd-atto-3        301
+/byd-song-plus/              /byd/byd-song-plus     301
+/byd-qin-plus-ev/            /byd/byd-qin-plus      301
+/tesla-roadster-dubai/       /tesla/roadster        301
+/tesla-cybertruck/           /tesla/cybertruck      301
+/tesla-model-s-dubai/        /tesla/model-s         301
+/tesla-model-3-dubai/        /tesla/model-3         301
+/tesla-model-x-price-dubai/  /tesla/model-x         301
+/tesla-model-y/              /tesla/model-y         301
+
+# Capitalised variants Google had crawled.
+/Avatr                       /avatr                 301
+/Franchise                   /franchise             301
+/ar/Franchise                /ar/franchise          301
+
+# -------------------------------------------- warranty PDFs: none, on purpose
+# The UAE file redirects two old WordPress PDF paths to /TESLA-WARRANTY-INFO-
+# compressed.pdf and /EVS-WARRANTY-INFO-VW-compressed.pdf. This site has no
+# warranty section and no PDFs, so both rules were a 301 straight into a 404
+# and are deleted. Do not copy them back without copying the files.
+
+# ------------------------------------------------------- old service pages
+# The pre-Next site had a flat page per service. They are service leaves now.
+# The first four of these existed already and pointed at the OLD names, which
+# is what produced the redirect-into-404 chains; the rest had no rule at all
+# and simply 404'd.
+/electric-car-battery-maintenance  /services/battery-electrical/high-voltage-battery-repairs  301
+/battery-replacement               /services/battery-electrical/high-voltage-battery-repairs  301
+/car-battery-replacement           /services/battery-electrical/high-voltage-battery-repairs  301
+/car-pre-purchase-inspection       /services/mechanical/full-checkups-diagnostics             301
+/pre-purchase-inspection           /services/mechanical/full-checkups-diagnostics             301
+/car-ac-repair-service             /services/mechanical/ac-hvac-service                       301
+/ac-repair-service                 /services/mechanical/ac-hvac-service                       301
+/car-engine-cooling-system-repair  /services/mechanical/ac-hvac-service                       301
+/car-brake-service                 /services/mechanical/brake-suspension-repairs              301
+/brake-service                     /services/mechanical/brake-suspension-repairs              301
+/car-wheel-alignment               /services/mechanical/tire-alignment-axle-work              301
+/car-engine-refurbishment          /services/mechanical/transmission-drive-unit-repairs       301
+/dashboard-repair                  /services/battery-electrical/infotainment-camera-systems   301
+/detailing-ceramic-coating         /services/body-paint/detailing-interior-exterior           301
+/accident-collision-repair         /services/body-paint/collision-repair-panel-replacement    301
+/undercoating-rust-proofing/       /services/body-paint                                       301
+/body-repair-shop/                 /services/body-paint                                       301
+
+# The Arabic twins of the same old pages.
+/ar/battery-replacement            /ar/services/battery-electrical/high-voltage-battery-repairs  301
+/ar/ac-repair-service              /ar/services/mechanical/ac-hvac-service                       301
+/ar/car-engine-refurbishment       /ar/services/mechanical/transmission-drive-unit-repairs       301
+/ar/accident-collision-repair      /ar/services/body-paint/collision-repair-panel-replacement    301
+
+# ------------------------------------------------------------------ sections
+/franchise-enquiries         /franchise             301
+/ev-service                  /services              301
+/ev-service/                 /services              301
+
+# --------------------------------------------------------- pre-Next .html URLs
+# The site before this one served .html files. Google still has them queued and
+# every one of them was a 404 until now; each has a live equivalent.
+/index.html                        /                      301
+/contact.html                      /contact               301
+/zeekr.html                        /zeekr                 301
+/tesla/model-s.html                /tesla/model-s         301
+/tesla/model-x.html                /tesla/model-x         301
+/tesla/model-y.html                /tesla/model-y         301
+/tesla/cybertruck.html             /tesla/cybertruck      301
+/ar/index.html                     /ar                    301
+/ar/index                          /ar                    301
+/ar/contact.html                   /ar/contact            301
+/ar/car-engine-refurbishment.html  /ar/services/mechanical/transmission-drive-unit-repairs  301
+
+# ------------------------------------------------- blog: none, on purpose
+# Five rules here pointed at /blog and /ar/blog. There is no blog on this
+# deployment - lib/blog-posts.js is a stub and no route is built - so each one
+# was a 301 into a 404. Deleted. When a Bahrain blog does launch, the rules
+# come back WITH the section, not before it.

@@ -1,0 +1,139 @@
+{
+  "_comment": "Copy and FAQs for /contact. No phone and no address by design, so the page job is to answer what somebody would otherwise ring to ask - which is also what gives it something to rank for. Rewritten for Iraq: the questions are different here because the cars are imports and the charging problem is the grid.",
+  "en": {
+    "eyebrow": "Opening soon",
+    "heading": "EVS is coming to Baghdad.",
+    "lead": "We build specialist electric and hybrid vehicle workshops — high-voltage diagnostics, battery health, software and bodywork — and Baghdad is next.",
+    "body": "The centre is not open yet, so there is no number to call and no address to visit. We would rather say that plainly than publish a placeholder. Leave your details and we will email you once, on the day we open.",
+    "formTitle": "Tell us when to reach you",
+    "name": "Your name",
+    "email": "Email address",
+    "car": "What do you drive?",
+    "carHint": "e.g. Toyota RAV4 hybrid, BYD Song Plus, Tesla Model 3",
+    "topic": "What is this about?",
+    "topics": [
+      "Tell me when you open",
+      "A question about my car",
+      "Franchise enquiry",
+      "Something else"
+    ],
+    "message": "Anything you want us to know",
+    "submit": "Send",
+    "sending": "Sending",
+    "errorTitle": "That did not send.",
+    "errorBody": "Something between your browser and us dropped the message, and we would rather tell you than pretend. Nothing you typed is lost — try the button again, or email us directly and it reaches the same people.",
+    "note": "We will only use this to reply. No newsletter, no list, nobody else.",
+    "asideTitle": "What happens next",
+    "steps": [
+      {
+        "title": "One email, on opening day",
+        "body": "Not a newsletter. We write once, when the Baghdad centre actually opens its doors."
+      },
+      {
+        "title": "A question gets a real answer",
+        "body": "If you ask something specific about your car, a technician replies — not a template."
+      },
+      {
+        "title": "Nothing is shared",
+        "body": "Your details stay with EVS. We do not sell, rent or pass them to anyone."
+      }
+    ],
+    "directTitle": "Prefer email?",
+    "directBody": "You can write to the EVS group mailbox directly and it will reach the same people.",
+    "faqTitle": "Questions people ask first",
+    "faqs": [
+      {
+        "q": "When does EVS Iraq open?",
+        "a": "We have not announced a date. The Baghdad centre is in preparation, and the honest answer is that we would rather tell you the day it happens than publish a date we might miss. Leave your email on this page and you will be told first."
+      },
+      {
+        "q": "Where in Iraq will the centre be?",
+        "a": "Baghdad. The location within the city is not confirmed publicly yet. Iraq is roughly 438,000 square kilometres, so unlike a small Gulf market one workshop does not serve the country — Basra is about 550 km away and Erbil about 350. Those are separate markets and would each need their own site."
+      },
+      {
+        "q": "Can I book a service now?",
+        "a": "Not yet. There is no workshop to bring a car to, and we will not take a booking we cannot honour. What you can do is register on this page, and we will contact you as soon as the bay is open."
+      },
+      {
+        "q": "Do you work on hybrids, or only full electrics?",
+        "a": "Both, and in Iraq hybrids are most of the work. A hybrid carries a petrol engine with its own oil, filters and plugs alongside a high-voltage battery with its own thermal management — two schedules, not one. Workshops that only know the engine half miss the battery entirely."
+      },
+      {
+        "q": "My car is an import with no local dealer. Is that a problem?",
+        "a": "It is the normal case in Iraq, not the exception. What it usually means is that the software region needs sorting and that nobody has measured the battery state of health. Neither depends on a dealer existing. Keep whatever import paperwork came with the car — it decides what any warranty claim can look like."
+      },
+      {
+        "q": "I want to run an EVS centre in Iraq. Who do I talk to?",
+        "a": "Franchise applications are handled by EVS Worldwide rather than by a country site, because the territory review, the NDA and the qualifying all sit there. Our franchise page explains the Iraq case and links straight through to the application."
+      }
+    ]
+  },
+  "ar": {
+    "eyebrow": "قريباً",
+    "heading": "إي في إس قادمة إلى بغداد.",
+    "lead": "نبني مراكز متخصصة في صيانة السيارات الكهربائية والهجينة — تشخيص الجهد العالي، وصحة البطارية، والبرمجيات، والهيكل والصبغ — وبغداد هي المحطة التالية.",
+    "body": "المركز لم يفتتح بعد، لذا لا يوجد رقم للاتصال ولا عنوان للزيارة. ونفضّل قول ذلك بوضوح على نشر معلومات مؤقتة. اترك بياناتك وسنراسلك مرة واحدة، يوم الافتتاح.",
+    "formTitle": "أخبرنا كيف نصل إليك",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "car": "ما السيارة التي تقودها؟",
+    "carHint": "مثال: تويوتا راف فور هايبرد، بي واي دي سونغ بلس، تسلا موديل 3",
+    "topic": "ما موضوع رسالتك؟",
+    "topics": [
+      "أبلغني عند الافتتاح",
+      "سؤال عن سيارتي",
+      "استفسار عن الامتياز",
+      "شيء آخر"
+    ],
+    "message": "أي شيء تود إخبارنا به",
+    "submit": "إرسال",
+    "sending": "جارٍ الإرسال",
+    "errorTitle": "لم يتم الإرسال.",
+    "errorBody": "حدث خلل بين متصفحك وبيننا فلم تصل رسالتك، ونفضل إخبارك بذلك. ما كتبته لم يُفقد — جرّب الزر مرة أخرى، أو راسلنا بالبريد مباشرة فيصل إلى الأشخاص أنفسهم.",
+    "note": "سنستخدم هذه البيانات للرد فقط. بلا نشرات بريدية، وبلا مشاركة مع أي جهة.",
+    "asideTitle": "ماذا يحدث بعد ذلك",
+    "steps": [
+      {
+        "title": "رسالة واحدة، يوم الافتتاح",
+        "body": "ليست نشرة بريدية. نكتب مرة واحدة، حين يفتح مركز بغداد أبوابه فعلاً."
+      },
+      {
+        "title": "السؤال يلقى جواباً حقيقياً",
+        "body": "إن سألت سؤالاً محدداً عن سيارتك، يرد عليك فني — لا رسالة جاهزة."
+      },
+      {
+        "title": "لا نشارك بياناتك",
+        "body": "بياناتك تبقى لدى إي في إس. لا نبيعها ولا نؤجرها ولا نمررها لأحد."
+      }
+    ],
+    "directTitle": "تفضّل البريد الإلكتروني؟",
+    "directBody": "يمكنك مراسلة بريد مجموعة إي في إس مباشرة وسيصل إلى الأشخاص أنفسهم.",
+    "faqTitle": "أسئلة يبدأ بها الناس",
+    "faqs": [
+      {
+        "q": "متى تفتتح إي في إس العراق؟",
+        "a": "لم نعلن تاريخاً. مركز بغداد قيد التجهيز، والجواب الصادق أننا نفضّل إخبارك يوم حدوث ذلك على نشر تاريخ قد لا نلتزم به. اترك بريدك في هذه الصفحة وستكون أول من يعلم."
+      },
+      {
+        "q": "أين سيكون المركز في العراق؟",
+        "a": "في بغداد. أما الموقع داخل المدينة فلم يُعلن بعد. ومساحة العراق نحو 438 ألف كيلومتر مربع، فخلافاً لسوق خليجية صغيرة لا تخدم ورشة واحدة البلد كله — فالبصرة تبعد زهاء 550 كيلومتراً وأربيل نحو 350. وهما سوقان منفصلتان تحتاج كل منهما موقعها الخاص."
+      },
+      {
+        "q": "هل يمكنني حجز موعد صيانة الآن؟",
+        "a": "ليس بعد. لا توجد ورشة تُحضر إليها السيارة، ولن نقبل حجزاً لا نستطيع الوفاء به. ما يمكنك فعله هو التسجيل في هذه الصفحة، وسنتواصل معك فور جاهزية المركز."
+      },
+      {
+        "q": "هل تعملون على الهجينة أم الكهربائية بالكامل فقط؟",
+        "a": "كلتيهما، والهجينة في العراق هي معظم العمل. فالسيارة الهجينة فيها محرك بنزين بزيته وفلاتره وشمعاته إلى جانب بطارية جهد عالٍ بإدارتها الحرارية — جدولان لا جدول واحد. والورش التي تعرف شق المحرك وحده تغفل البطارية تماماً."
+      },
+      {
+        "q": "سيارتي مستوردة بلا وكيل محلي. هل هذه مشكلة؟",
+        "a": "هذه هي الحالة الاعتيادية في العراق لا الاستثناء. وتعني عادة أن إقليم البرمجة يحتاج ضبطاً وأن أحداً لم يقِس صحة البطارية. ولا يتوقف أي منهما على وجود وكيل. احتفظ بأوراق الاستيراد التي جاءت مع السيارة — فهي تحدد شكل أي مطالبة ضمان."
+      },
+      {
+        "q": "أريد إدارة مركز إي في إس في العراق. بمن أتواصل؟",
+        "a": "طلبات الامتياز تديرها إي في إس العالمية لا المواقع القُطرية، لأن مراجعة المنطقة واتفاقية السرية والتأهيل كلها هناك. وصفحة الامتياز لدينا تشرح حالة العراق وتربطك مباشرة بالطلب."
+      }
+    ]
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "_comment": "A local block per page, keyed 'brand:<slug>' or 'service:<path>', falling back to 'default:brand' / 'default:service'. WHY IT EXISTS: the 143 brand and service pages inherit the same tokenised copy, so without something written per page they are near-duplicates that differ only in a noun. A review of the Bahrain build found that file carried only four specific keys and ~139 pages shared one default — the very problem it was meant to solve. This file carries thirteen, chosen where Iraq genuinely differs: imports with no dealer network, generator charging, and the worst heat in the EVS network.",
+
+  "brand:byd": {
+    "en": {
+      "heading": "BYD in Iraq",
+      "body": "BYD arrives here through importers rather than a factory dealer network, which changes what servicing one involves. The DM-i cars in particular are plug-in hybrids, not electric cars — they carry a petrol engine with its own oil, filters and plugs alongside the high-voltage system, and owners who budgeted for electric running costs are regularly caught out by the engine half.",
+      "points": [
+        "DM-i models need engine servicing as well as battery work — two maintenance schedules, not one",
+        "Imported cars often need region coding before maps, apps and connected features behave",
+        "Blade-pack thermal behaviour is worth checking annually at Iraqi summer temperatures"
+      ]
+    },
+    "ar": {
+      "heading": "بي واي دي في العراق",
+      "body": "تصل بي واي دي إلى العراق عبر المستوردين لا عبر شبكة وكالات للمصنّع، وهذا يغيّر ما تعنيه صيانتها. وطرازات DM-i تحديداً هجينة قابلة للشحن لا كهربائية بالكامل — فيها محرك بنزين بزيته وفلاتره وشمعاته إلى جانب نظام الجهد العالي، والمالكون الذين حسبوا تكاليف سيارة كهربائية يفاجَؤون بشق المحرك باستمرار.",
+      "points": [
+        "طرازات DM-i تحتاج صيانة محرك إضافة إلى أعمال البطارية — جدولان للصيانة لا جدول واحد",
+        "السيارات المستوردة تحتاج غالباً ضبط الإقليم قبل أن تعمل الخرائط والتطبيقات والخدمات المتصلة",
+        "السلوك الحراري لبطارية Blade يستحق فحصاً سنوياً في حرارة الصيف العراقي"
+      ]
+    }
+  },
+
+  "brand:tesla": {
+    "en": {
+      "heading": "Tesla in Iraq",
+      "body": "Tesla has no official presence in Iraq, so every car here came in through an importer or the used trade — frequently via Jordan, Turkey or the Gulf. That decides most of what an owner deals with: the service history is whatever paperwork travelled with the car, and connected features depend on the region the car was coded for.",
+      "points": [
+        "No official dealer means no warranty counter — the import paperwork is what any claim rests on",
+        "Region coding affects navigation, app connectivity and in some cases charging behaviour",
+        "Check which market the car was built for; cooling calibrated for a cooler climate is the common trap"
+      ]
+    },
+    "ar": {
+      "heading": "تسلا في العراق",
+      "body": "لا وجود رسمياً لتسلا في العراق، فكل سيارة هنا دخلت عبر مستورد أو تجارة المستعمل — عبر الأردن أو تركيا أو الخليج غالباً. وهذا يحدد معظم ما يتعامل معه المالك: فسجل الصيانة هو ما رافق السيارة من أوراق، والخدمات المتصلة تتوقف على الإقليم الذي بُرمجت عليه.",
+      "points": [
+        "غياب الوكيل الرسمي يعني غياب مرجع الضمان — وأوراق الاستيراد هي أساس أي مطالبة",
+        "ضبط الإقليم يؤثر في الملاحة والاتصال بالتطبيق وفي سلوك الشحن أحياناً",
+        "تحقق من السوق التي صُنعت لها السيارة؛ فالتبريد المعاير لمناخ أبرد هو الفخ الشائع"
+      ]
+    }
+  },
+
+  "brand:chery": {
+    "en": {
+      "heading": "Chery in Iraq",
+      "body": "Chery is one of the Chinese marques that reached Iraqi roads in volume, and the electrified models are following the petrol ones in. Parts and diagnostic coverage are improving but still run through importers, so the practical question is usually whether a workshop can read the car at all rather than whether a part exists.",
+      "points": [
+        "Diagnostic access varies by import batch — the software region matters as much as the model year",
+        "Hybrid variants need the engine side maintained on its own schedule",
+        "Thermal management is the part worth checking before a Baghdad summer, not after"
+      ]
+    },
+    "ar": {
+      "heading": "شيري في العراق",
+      "body": "شيري من العلامات الصينية التي وصلت الطرق العراقية بكميات، والطرازات الكهربائية تتبع نظيراتها البنزينية. وتتحسن تغطية القطع والتشخيص لكنها لا تزال تمر عبر المستوردين، فالسؤال العملي عادة هل تستطيع الورشة قراءة السيارة أصلاً لا هل تتوفر القطعة.",
+      "points": [
+        "إمكانية التشخيص تتفاوت بحسب دفعة الاستيراد — وإقليم البرمجة لا يقل أهمية عن سنة الصنع",
+        "النسخ الهجينة تحتاج صيانة شق المحرك وفق جدوله الخاص",
+        "إدارة الحرارة هي ما يستحق الفحص قبل صيف بغداد لا بعده"
+      ]
+    }
+  },
+
+  "brand:hyundai": {
+    "en": {
+      "heading": "Hyundai in Iraq",
+      "body": "Hyundai's electrified models mostly arrive through the used trade, often from markets with a far milder climate than Iraq's. That is the thing to check first: a cooling system and a battery calibration validated for Europe or Korea meet a different problem at 50°C.",
+      "points": [
+        "Used imports should get a battery state-of-health test before money changes hands",
+        "Confirm the market the car was built for — it decides the cooling and charging calibration",
+        "Software and region coding usually need attention on an imported car"
+      ]
+    },
+    "ar": {
+      "heading": "هيونداي في العراق",
+      "body": "تصل طرازات هيونداي الكهربائية غالباً عبر تجارة المستعمل، ومن أسواق مناخها أرحم بكثير من مناخ العراق. وهذا أول ما يجب فحصه: فنظام تبريد ومعايرة بطارية اعتُمدا لأوروبا أو كوريا يواجهان مشكلة مختلفة عند خمسين درجة.",
+      "points": [
+        "المستوردة المستعملة تستحق فحص صحة بطارية قبل دفع ثمنها",
+        "تأكد من السوق التي صُنعت لها السيارة — فهي تحدد معايرة التبريد والشحن",
+        "البرمجيات وضبط الإقليم يحتاجان عادة إلى معالجة في السيارة المستوردة"
+      ]
+    }
+  },
+
+  "default:brand": {
+    "en": {
+      "heading": "Servicing this brand in Iraq",
+      "body": "Most electrified cars in Iraq arrived through importers rather than a dealer network, so two things usually need sorting before anything else: the software region the car was coded for, and an honest reading of the high-voltage battery's state of health. Both are checks, not repairs, and both decide what the car is actually worth running.",
+      "points": [
+        "A state-of-health test on the pack, because there is often no local dealer to arbitrate",
+        "Region and software coding, which affects maps, apps and sometimes charging",
+        "Thermal system check before summer — Iraqi heat is the hardest ambient load in the region"
+      ]
+    },
+    "ar": {
+      "heading": "صيانة هذه العلامة في العراق",
+      "body": "معظم السيارات الكهربائية في العراق دخلت عبر المستوردين لا عبر شبكة وكالات، فهناك أمران يُضبطان عادة قبل أي شيء آخر: إقليم البرمجة الذي رُمّزت عليه السيارة، وقراءة صادقة لصحة بطارية الجهد العالي. وكلاهما فحص لا إصلاح، وكلاهما يحدد ما تساويه السيارة فعلاً في التشغيل.",
+      "points": [
+        "فحص صحة البطارية، إذ لا يوجد غالباً وكيل محلي يفصل في الأمر",
+        "ضبط الإقليم والبرمجيات، وهو يؤثر في الخرائط والتطبيقات وفي الشحن أحياناً",
+        "فحص النظام الحراري قبل الصيف — فحرارة العراق أقسى حمل محيط في المنطقة"
+      ]
+    }
+  },
+
+  "service:services/battery-electrical": {
+    "en": {
+      "heading": "High-voltage work in Baghdad",
+      "body": "Two things make battery and electrical work different in Iraq. The first is heat: sustained 50°C ambient loads a pack harder than fast charging ever does. The second is how the car gets charged — a neighbourhood generator does not hold a clean voltage or frequency, and the onboard charger is the component that absorbs the difference.",
+      "points": [
+        "Onboard chargers fail early on cars charged mostly from generators — it is the first expensive fault here",
+        "Thermal management, not charge rate, is what decides pack life in an Iraqi summer",
+        "A 12-volt battery lasts far less here than its rated life, and a flat one looks exactly like a dead car"
+      ]
+    },
+    "ar": {
+      "heading": "أعمال الجهد العالي في بغداد",
+      "body": "أمران يجعلان أعمال البطارية والكهرباء مختلفة في العراق. الأول الحرارة: فحمل محيط مستمر عند خمسين درجة يُجهد البطارية أكثر مما يفعل الشحن السريع إطلاقاً. والثاني طريقة شحن السيارة — فمولّدة الحي لا تثبّت جهداً ولا تردداً، والشاحن الداخلي هو ما يمتص الفرق.",
+      "points": [
+        "الشواحن الداخلية تتعطل مبكراً في السيارات المشحونة من المولّدات غالباً — وهو أول عطل مكلف هنا",
+        "إدارة الحرارة لا معدل الشحن هي ما يحدد عمر البطارية في صيف العراق",
+        "بطارية 12 فولت تعيش هنا أقل بكثير من عمرها المقدّر، والفارغة منها تبدو تماماً كسيارة ميتة"
+      ]
+    }
+  },
+
+  "service:services/battery-electrical/charger-installation": {
+    "en": {
+      "heading": "Installing a charger on an Iraqi supply",
+      "body": "This is the installation question nobody abroad has to answer. With state power available only part of the day, a home charger has to cope with switching between mains and a generator — and a wall box wired as though the supply were steady is how both the charger and the car's onboard unit get damaged.",
+      "points": [
+        "The install has to account for the changeover, not assume one clean source",
+        "Earthing is the part most often wrong, and the part that matters most for safety",
+        "Sizing the charger to the generator matters more than buying the fastest unit available"
+      ]
+    },
+    "ar": {
+      "heading": "تركيب شاحن على التغذية العراقية",
+      "body": "هذا سؤال التركيب الذي لا يضطر أحد في الخارج للإجابة عنه. فمع توفر التيار الوطني جزءاً من اليوم فقط، على الشاحن المنزلي أن يتعامل مع التبديل بين الشبكة والمولّدة — وشاحن جداري مُمدّد كأن التغذية مستقرة هو ما يُتلف الشاحن ووحدة السيارة الداخلية معاً.",
+      "points": [
+        "يجب أن يراعي التركيب عملية التبديل، لا أن يفترض مصدراً واحداً نظيفاً",
+        "التأريض هو الجزء الأكثر خطأً، وهو الأهم للسلامة",
+        "مطابقة قدرة الشاحن لقدرة المولّدة أهم من شراء أسرع وحدة متاحة"
+      ]
+    }
+  },
+
+  "service:services/battery-electrical/battery-health-thermal-management": {
+    "en": {
+      "heading": "Why this test matters more in Iraq",
+      "body": "Basra holds Iraq's recorded high above 53°C and Baghdad has reached 52°C. A cooling circuit running at eighty per cent of its design throws no warning light and no fault code — it simply ages the pack, and the owner discovers it three years later as range that never comes back.",
+      "points": [
+        "State of health is a measurement, not an estimate from the dashboard percentage",
+        "Coolant condition and pump flow are the parts that quietly degrade in this climate",
+        "An annual check before summer costs a fraction of the range it protects"
+      ]
+    },
+    "ar": {
+      "heading": "لماذا يهم هذا الفحص في العراق أكثر",
+      "body": "تحمل البصرة أعلى درجة مسجلة في العراق فوق 53 درجة، وبلغت بغداد 52. ودارة تبريد تعمل بثمانين بالمئة من تصميمها لا تُشعل مؤشر تحذير ولا تُسجّل عطلاً — إنما تُشيخ البطارية فحسب، ويكتشف المالك ذلك بعد ثلاث سنوات على شكل مدى لا يعود.",
+      "points": [
+        "صحة البطارية قياس، لا تقدير من نسبة لوحة العدادات",
+        "حالة سائل التبريد وتدفق المضخة هما ما يتدهور بصمت في هذا المناخ",
+        "فحص سنوي قبل الصيف يكلف جزءاً يسيراً من المدى الذي يحميه"
+      ]
+    }
+  },
+
+  "service:services/mechanical/ac-hvac-service": {
+    "en": {
+      "heading": "Air conditioning at 50°C",
+      "body": "In an electric car the air conditioning is not a comfort system on its own — in most designs the same circuit helps manage the battery. So an air conditioning fault in an Iraqi summer is rarely only a cabin problem, and treating it as one is how a weak system ends up ageing the pack as well.",
+      "points": [
+        "Cabin cooling and battery cooling often share a circuit — a weak system costs range too",
+        "Refrigerant charge and condenser condition degrade faster under this ambient load",
+        "Dust is the other half of the problem here, and a blocked condenser mimics a refrigerant fault"
+      ]
+    },
+    "ar": {
+      "heading": "التكييف عند خمسين درجة",
+      "body": "في السيارة الكهربائية ليس التكييف نظام راحة قائماً بذاته — ففي معظم التصاميم تساعد الدارة نفسها في إدارة حرارة البطارية. لذا فعطل التكييف في صيف العراق نادراً ما يكون مشكلة مقصورة فقط، والتعامل معه على هذا الأساس هو ما يجعل نظاماً ضعيفاً يُشيخ البطارية أيضاً.",
+      "points": [
+        "تبريد المقصورة وتبريد البطارية يتشاركان الدارة غالباً — والنظام الضعيف يكلف مدى أيضاً",
+        "شحنة غاز التبريد وحالة المكثف تتدهوران أسرع تحت هذا الحمل الحراري",
+        "الغبار هو النصف الآخر من المشكلة هنا، والمكثف المسدود يحاكي عطل غاز التبريد"
+      ]
+    }
+  },
+
+  "service:services/programming": {
+    "en": {
+      "heading": "Software on an imported car",
+      "body": "Because most electrified cars in Iraq came in through importers, the software is frequently coded for another market. That shows up as navigation that does not know where it is, an app that will not pair, features the car has but will not enable — and occasionally charging behaviour tuned for a different supply.",
+      "points": [
+        "Region coding is the most common single job on an imported car here",
+        "Firmware delivered over the air often will not reach a car coded for another market",
+        "Module programming is what restores features the car already has in hardware"
+      ]
+    },
+    "ar": {
+      "heading": "البرمجيات في سيارة مستوردة",
+      "body": "لأن معظم السيارات الكهربائية في العراق دخلت عبر المستوردين، فالبرمجيات مرمّزة غالباً لسوق أخرى. ويظهر ذلك كملاحة لا تعرف موقعها، وتطبيق يرفض الاقتران، وخصائص موجودة في السيارة ولا تُفعَّل — وأحياناً سلوك شحن معاير لتغذية مختلفة.",
+      "points": [
+        "ضبط الإقليم هو أكثر عمل مفرد شيوعاً في السيارة المستوردة هنا",
+        "التحديثات اللاسلكية لا تصل غالباً إلى سيارة مرمّزة لسوق أخرى",
+        "برمجة الوحدات هي ما يعيد تفعيل خصائص تملكها السيارة عتادياً أصلاً"
+      ]
+    }
+  },
+
+  "service:services/programming/custom-region-coding": {
+    "en": {
+      "heading": "Region coding, the Iraqi case",
+      "body": "A car built for China, Europe or North America and sold in Baghdad carries that market's assumptions in its software. Region coding is what reconciles them — and on a grey import it is usually the difference between a car that works and a car that merely drives.",
+      "points": [
+        "Maps, voice, app pairing and connected services all hang on the coded region",
+        "Some charging and thermal profiles are region-set too, which matters at Iraqi temperatures",
+        "Done properly it is a software job, not a workaround or a jailbreak"
+      ]
+    },
+    "ar": {
+      "heading": "ضبط الإقليم، الحالة العراقية",
+      "body": "السيارة المصنوعة للصين أو أوروبا أو أمريكا الشمالية والمباعة في بغداد تحمل افتراضات تلك السوق في برمجياتها. وضبط الإقليم هو ما يوفّق بينها — وفي السيارة المستوردة خارج الوكالة يكون عادة الفرق بين سيارة تعمل وسيارة تسير فقط.",
+      "points": [
+        "الخرائط والأوامر الصوتية واقتران التطبيق والخدمات المتصلة كلها معلّقة على الإقليم المرمّز",
+        "بعض ملفات الشحن والحرارة محددة بالإقليم أيضاً، وهذا يهم عند درجات حرارة العراق",
+        "إن أُنجز كما ينبغي فهو عمل برمجي، لا حيلة ولا كسر حماية"
+      ]
+    }
+  },
+
+  "service:services/mechanical/full-checkups-diagnostics": {
+    "en": {
+      "heading": "What a pre-purchase check looks like here",
+      "body": "With most cars imported and few holding a local service history, the inspection does more work in Iraq than it does elsewhere. Four things decide whether a used electrified car is worth the asking price, and only one of them is visible on a test drive.",
+      "points": [
+        "Battery state of health, measured rather than read off the dashboard",
+        "Which market the car was built for, because cooling calibration follows it",
+        "Where any warranty is held, and whether it covers the high-voltage pack at all",
+        "Evidence of how it has been charged — generator-only history shows up in the charger"
+      ]
+    },
+    "ar": {
+      "heading": "كيف يبدو فحص ما قبل الشراء هنا",
+      "body": "مع كون معظم السيارات مستوردة وقلّة منها تحمل سجل صيانة محلياً، يؤدي الفحص في العراق دوراً أكبر مما يؤديه في غيره. أربعة أمور تحدد إن كانت السيارة الكهربائية المستعملة تستحق سعرها، وواحد منها فقط يظهر في تجربة القيادة.",
+      "points": [
+        "صحة البطارية، مقيسة لا مقروءة من لوحة العدادات",
+        "السوق التي صُنعت لها السيارة، لأن معايرة التبريد تتبعها",
+        "أين يُحفظ الضمان إن وُجد، وهل يغطي بطارية الجهد العالي أصلاً",
+        "دليل على طريقة شحنها — فتاريخ الشحن من المولّدة وحدها يظهر في الشاحن"
+      ]
+    }
+  },
+
+  "default:service": {
+    "en": {
+      "heading": "This service in Iraq",
+      "body": "Two conditions shape almost every job in Baghdad. Heat — 50°C is an ordinary July afternoon and it loads cooling, rubber, fluids and batteries harder than the odometer suggests. And an unsteady supply, which means cars here are charged and powered in ways the manufacturer's service schedule never anticipated.",
+      "points": [
+        "Service intervals validated in milder markets are optimistic at Iraqi temperatures",
+        "Dust and heat together shorten the life of filters, condensers and coolant",
+        "Most cars here are imports, so the software region is checked as a matter of course"
+      ]
+    },
+    "ar": {
+      "heading": "هذه الخدمة في العراق",
+      "body": "ظرفان يحكمان كل عمل تقريباً في بغداد. الحرارة — فخمسون درجة ظهيرة تموز اعتيادية، وهي تُجهد التبريد والمطاط والسوائل والبطاريات أكثر مما يوحي عدّاد المسافة. وعدم استقرار التغذية، ما يعني أن السيارات هنا تُشحن وتُغذّى بطرق لم يتوقعها جدول صيانة المصنّع.",
+      "points": [
+        "فترات الصيانة المعتمدة في أسواق أرحم متفائلة عند درجات حرارة العراق",
+        "الغبار والحرارة معاً يقصّران عمر الفلاتر والمكثفات وسائل التبريد",
+        "معظم السيارات هنا مستوردة، لذا يُفحص إقليم البرمجة بشكل اعتيادي"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# The Netlify Forms definition file. It is a real static URL, so a crawler that
+# guesses it or finds it in a log can fetch it; it carries a noindex meta tag of
+# its own, and this header is the belt to that braces. It is NOT disallowed in
+# robots.txt on purpose — a blocked URL is one Google knows exists and is not
+# allowed to read the noindex on, which is how it ends up listed anyway.
+/__forms.html
+  X-Robots-Tag: noindex, nofollow
+
+/js/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/css/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/fonts/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/img/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=86400

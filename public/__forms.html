@@ -1,0 +1,127 @@
+<!doctype html>
+<!--
+  THE FORM DEFINITION NETLIFY READS AT DEPLOY TIME. Do not delete.
+
+  WHY THIS FILE EXISTS. Netlify Forms works by scanning the deployed HTML for a
+  <form data-netlify="true"> and registering the fields it finds. That scan runs
+  over STATIC files only. Every page on this site is rendered by the Next.js
+  runtime, so there is no static HTML for the scanner to read - and rather than
+  silently collecting nothing, @netlify/plugin-nextjs@5 fails the build:
+
+      Error: Failed assembling prerendered content for upload
+      @netlify/plugin-nextjs@5 requires migration steps to support Netlify Forms
+
+  That is exactly what happened on deploy 6acdeb49. The documented fix
+  (opennext.js.org/netlify/forms) is this file: a static page, never linked and
+  never seen, whose only job is to declare the form so the scanner finds it.
+
+  THE RULES, because each one fails silently if broken:
+    1. `name` here must equal the `name` on the real form in
+       components/launch/LaunchContact.js - that is the key submissions are
+       filed under.
+    2. EVERY field the real form posts must appear here. A field missing from
+       this file is dropped from the submission, with no error anywhere.
+    3. `netlify-honeypot` must match too, or the honeypot field arrives as a
+       normal (always-empty) answer instead of being used to bin bots.
+    4. `action` is where the no-JavaScript fallback is sent. With JS the
+       component posts here with fetch() and routes to /thank-you itself.
+
+  WHY THIS PAGE HAS VISIBLE CONTENT. Without JS the browser posts to this URL
+  natively, and whether Netlify then honours the `action` below or simply serves
+  the URL that was posted to is not something the docs pin down. If it serves
+  this page and this page is blank, somebody has just given us their details and
+  been shown nothing. So the page is a plain confirmation: whichever of the two
+  URLs the visitor lands on, they are told the message arrived. It is noindexed
+  in its own meta and in public/_headers.
+
+  So: changing a field in LaunchContact.js means changing it here, in the same
+  commit. The form is the one on /contact and /ar/contact - both locales submit
+  under the same name and are told apart by the `locale` field.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Thanks — EVS Iraq</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0b0c;
+        --fg: #f4f4f5;
+        --muted: #a1a1aa;
+        --brand: #e63946;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px 16px;
+        background: var(--bg);
+        color: var(--fg);
+        font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      main { max-width: 32rem; text-align: center; }
+      .eyebrow {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+      h1 { margin: 0.75rem 0 0; font-size: clamp(1.6rem, 6vw, 2.25rem); line-height: 1.15; }
+      p { color: var(--muted); }
+      a.home {
+        display: inline-block;
+        margin-top: 1.75rem;
+        padding: 0.8rem 1.5rem;
+        border: 1px solid var(--brand);
+        border-radius: 2px;
+        color: var(--fg);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      [lang="ar"] { direction: rtl; margin-top: 2.5rem; border-top: 1px solid #27272a; padding-top: 2rem; }
+    </style>
+  </head>
+  <body>
+    <form
+      name="iraq-launch-interest"
+      data-netlify="true"
+      netlify-honeypot="company-website"
+      action="/thank-you"
+      method="POST"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="iraq-launch-interest" />
+      <input type="hidden" name="locale" />
+      <input type="text" name="company-website" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="vehicle" />
+      <input type="text" name="topic" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <main>
+      <p class="eyebrow">EVS Iraq</p>
+      <h1>Thanks — we have your details.</h1>
+      <p>
+        We will email you once, on the day the Baghdad centre opens. If you asked
+        a question about your car, a technician will reply.
+      </p>
+      <a class="home" href="/">Back to the site</a>
+
+      <div lang="ar">
+        <h1>شكراً — وصلتنا بياناتك.</h1>
+        <p>
+          سنراسلك مرة واحدة يوم افتتاح مركز بغداد. وإن كان سؤالك عن سيارتك،
+          فسيرد عليك أحد الفنيين.
+        </p>
+        <a class="home" href="/ar">العودة إلى الموقع</a>
+      </div>
+    </main>
+  </body>
+</html>

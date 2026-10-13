@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "evs-iraq",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "next",
+        "dev",
+        "--webpack",
+        "-p",
+        "3030"
+      ],
+      "port": 3030
+    }
+  ]
+}
