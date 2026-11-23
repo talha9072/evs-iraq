@@ -7,7 +7,7 @@ import { SOS_SEO } from "@/lib/static-seo";
 import { Phone } from "@/components/chrome/icons";
 
 /**
- * /sos and /ar/sos - 24/7 roadside assistance.
+ * /sos and /ar/sos - emergency roadside assistance.
  *
  * REDESIGNED - Tailwind, no Crafto, so this page carries the same header and
  * footer as every other route. It was one of the last two on the legacy stack.
@@ -36,7 +36,7 @@ import { Phone } from "@/components/chrome/icons";
 const COPY = {
   en: {
     tag: "EVS",
-    h1: "24/7 Emergency EV Roadside Support — Wherever You Are",
+    h1: "Emergency EV Roadside Support — Wherever You Are",
     displayA: "When your ",
     displayHighlight: "EV",
     displayB: " stops, we ",
